@@ -1,0 +1,20 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background-color: #2B2B2B !important;
+}
+
+.hide-scroll {
+  overflow: auto;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+}
+
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
