@@ -16,7 +16,7 @@ export default function Widget() {
   return (
     <Fragment>
       <Box
-        w={"32%"}
+        w={"30%"}
         px={10}
         py={10}
         style={{ borderLeft: "3px solid #3a3a3a" }}

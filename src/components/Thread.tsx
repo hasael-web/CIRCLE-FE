@@ -1,16 +1,26 @@
-import { Box, Text } from "@chakra-ui/react";
-import { Fragment, useEffect, useState } from "react";
+import { Fragment } from "react";
+import { Box, Spinner, Text } from "@chakra-ui/react";
+import { useQuery } from "@tanstack/react-query";
 import ThreadItem from "@/feautures/threads/components/ThreadItem";
-import { ThreadType } from "@/types";
-import threadsDummy from "../mocks/threads.json";
 import HomeThreadForm from "@/feautures/threads/components/HomeThreadForm";
+import { ThreadsType } from "@/types";
+import { API } from "@/libs/api";
+
+const fetchThreads = async () => {
+  const response = await API.get("/api/v1/threads");
+  return response.data;
+};
 
 export default function Thread() {
-  const [threads, setThreads] = useState<ThreadType[]>([]);
-
-  useEffect(() => {
-    setThreads(threadsDummy);
-  }, []);
+  const {
+    isLoading,
+    data: threads,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["threads"],
+    queryFn: fetchThreads,
+  });
 
   return (
     <Fragment>
@@ -19,9 +29,23 @@ export default function Thread() {
           Home
         </Text>
         <HomeThreadForm />
-        {threads.map((thread) => (
-          <ThreadItem data={thread} />
-        ))}
+        {isLoading ? (
+          <Box textAlign={"center"}>
+            <Spinner size="xl" />
+          </Box>
+        ) : (
+          <>
+            {isError ? (
+              <h1>{error.message}</h1>
+            ) : (
+              <>
+                {threads.data.map((thread: ThreadsType) => (
+                  <ThreadItem key={thread.id} data={thread} />
+                ))}
+              </>
+            )}
+          </>
+        )}
       </Box>
     </Fragment>
   );

@@ -1,17 +1,19 @@
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
-import { BsHouse } from "react-icons/bs";
-import { RiUserSearchLine } from "react-icons/ri";
-import { AiOutlineHeart } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
+import { Link, useLocation } from "react-router-dom";
+import { BsHouse, BsHouseFill } from "react-icons/bs";
+import { RiUserSearchFill, RiUserSearchLine } from "react-icons/ri";
+import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { BiLogOut } from "react-icons/bi";
+import { FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
 
-export default function Navbar() {
+export default function Sidebar() {
+  const location = useLocation();
+
   return (
     <Fragment>
       <Box
-        w={"23%"}
+        w={"20%"}
         px={50}
         py={10}
         borderRight={"3px solid #3a3a3a"}
@@ -34,7 +36,7 @@ export default function Navbar() {
             <Link to={"/"}>
               <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
-                  <BsHouse />
+                  {location.pathname === "/" ? <BsHouseFill /> : <BsHouse />}
                 </Text>
                 <Text fontSize={"md"} mt={1}>
                   Home
@@ -44,17 +46,25 @@ export default function Navbar() {
             <Link to={"/search"}>
               <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
-                  <RiUserSearchLine />
+                  {location.pathname === "/search" ? (
+                    <RiUserSearchFill />
+                  ) : (
+                    <RiUserSearchLine />
+                  )}
                 </Text>
                 <Text fontSize={"md"} mt={1}>
                   Search
                 </Text>
               </Box>
             </Link>
-            <Link to={"/follows"}>
+            <Link to={"/follow"}>
               <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
-                  <AiOutlineHeart />
+                  {location.pathname === "/follow" ? (
+                    <AiTwotoneHeart />
+                  ) : (
+                    <AiOutlineHeart />
+                  )}
                 </Text>
                 <Text fontSize={"md"} mt={1}>
                   Follows
@@ -64,7 +74,11 @@ export default function Navbar() {
             <Link to={"/profile"}>
               <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
-                  <CgProfile />
+                  {location.pathname === "/profile" ? (
+                    <FaCircleUser />
+                  ) : (
+                    <FaRegCircleUser />
+                  )}
                 </Text>
                 <Text fontSize={"md"} mt={1}>
                   Profile
@@ -76,6 +90,7 @@ export default function Navbar() {
               size="md"
               width={"100%"}
               borderRadius={"50px"}
+              onClick={() => alert("CREATE POST")}
             >
               Create Post
             </Button>
@@ -85,7 +100,12 @@ export default function Navbar() {
             <Text fontSize={"2xl"}>
               <BiLogOut />
             </Text>
-            <Text fontSize={"md"} mt={1} cursor={"pointer"}>
+            <Text
+              fontSize={"md"}
+              mt={1}
+              cursor={"pointer"}
+              onClick={() => alert("LOGOUT")}
+            >
               Logout
             </Text>
           </Flex>
