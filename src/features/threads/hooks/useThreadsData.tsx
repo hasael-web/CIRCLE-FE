@@ -38,7 +38,7 @@ export const useInfiniteThreads = () => {
     queryFn: fetchInfiniteThreads,
     staleTime: 10000,
     refetchOnWindowFocus: false,
-    getNextPageParam: (lastPage, pages) => {      
+    getNextPageParam: (lastPage, pages) => {
       if (lastPage.data.length) {
         return pages.length + 1;
       }
@@ -49,15 +49,17 @@ export const useInfiniteThreads = () => {
   });
 };
 
-export const usePostThread = () => {
+export const usePostThread = (reset: () => void) => {
   const queryCLient = useQueryClient();
 
   return useMutation({
     mutationFn: postNewThread,
     onSuccess: () => {
       queryCLient.invalidateQueries({
-        queryKey: ["threads"],
+        // queryKey: ["threads"],
+        queryKey: ["threads-infinite"],
       });
+      reset();
     },
     onError: (error) => {
       if (error instanceof AxiosError) {
