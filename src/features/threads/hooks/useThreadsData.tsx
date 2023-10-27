@@ -1,4 +1,9 @@
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import {
+  useQuery,
+  useMutation,
+  useQueryClient,
+  useInfiniteQuery,
+} from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { API } from "@/libs/api";
@@ -7,6 +12,15 @@ import { ThreadPostType } from "@/types";
 const fetchThreads = async () => {
   const response = await API.get("/api/v1/threads");
   return response.data;
+};
+
+const fetchInfiniteThreads = async ({ pageParam = 1 }) => {
+  const response = await API.get(`/api/v1/threads?page=${pageParam}`);
+  return response.data;
+};
+
+const postNewThread = (thread: ThreadPostType) => {
+  return API.post("/api/v1/thread", thread);
 };
 
 export const useThreadsData = () => {
@@ -18,8 +32,21 @@ export const useThreadsData = () => {
   });
 };
 
-const postNewThread = (thread: ThreadPostType) => {
-  return API.post("/api/v1/thread", thread);
+export const useInfiniteThreads = () => {
+  return useInfiniteQuery({
+    queryKey: ["threads-infinite"],
+    queryFn: fetchInfiniteThreads,
+    staleTime: 10000,
+    refetchOnWindowFocus: false,
+    getNextPageParam: (lastPage, pages) => {      
+      if (lastPage.data.length) {
+        return pages.length + 1;
+      }
+
+      return undefined;
+    },
+    initialPageParam: 1,
+  });
 };
 
 export const usePostThread = () => {

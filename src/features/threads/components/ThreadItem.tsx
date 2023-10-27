@@ -29,15 +29,13 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
   return (
     <Fragment>
       <Flex gap={"15px"} border={"2px solid #3a3a3a"} p={"20px"} mb={"10px"}>
-        <Link to={`/profile/${props.data.user.id}`} style={{ height: "40px" }}>
-          <Image
-            borderRadius="full"
-            boxSize="40px"
-            objectFit="cover"
-            src={props.data.user.profile_picture}
-            alt={`${props.data.user.fullname} Profile Picture`}
-          />
-        </Link>
+        <Image
+          borderRadius="full"
+          boxSize="40px"
+          objectFit="cover"
+          src={props.data.user.profile_picture}
+          alt={`${props.data.user.fullname} Profile Picture`}
+        />
         <Box>
           <Flex mb={"5px"}>
             <Link to={`/profile/${props.data.user.id}`}>
@@ -57,7 +55,7 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
               </Text>
             </Box>
           </Flex>
-          <Text fontSize={"sm"} mb={"10px"}>
+          <Text fontSize={"sm"} mb={"10px"} wordBreak={"break-word"}>
             {props.data.content}
           </Text>
           {props.data.image && (
