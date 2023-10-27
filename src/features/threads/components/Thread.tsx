@@ -1,26 +1,12 @@
 import { Fragment } from "react";
 import { Box, Spinner, Text } from "@chakra-ui/react";
-import { useQuery } from "@tanstack/react-query";
-import ThreadItem from "@/feautures/threads/components/ThreadItem";
-import HomeThreadForm from "@/feautures/threads/components/HomeThreadForm";
-import { ThreadsType } from "@/types";
-import { API } from "@/libs/api";
-
-const fetchThreads = async () => {
-  const response = await API.get("/api/v1/threads");
-  return response.data;
-};
+import HomeThreadForm from "@threads/components/HomeThreadForm";
+import ThreadItem from "@threads/components/ThreadItem";
+import { useThreadsData } from "@threads/hooks/useThreadsData";
+import { ThreadHomeType } from "@/types";
 
 export default function Thread() {
-  const {
-    isLoading,
-    data: threads,
-    isError,
-    error,
-  } = useQuery({
-    queryKey: ["threads"],
-    queryFn: fetchThreads,
-  });
+  const { isLoading, data: threads, isError, error } = useThreadsData();
 
   return (
     <Fragment>
@@ -39,7 +25,7 @@ export default function Thread() {
               <h1>{error.message}</h1>
             ) : (
               <>
-                {threads.data.map((thread: ThreadsType) => (
+                {threads.data.map((thread: ThreadHomeType) => (
                   <ThreadItem key={thread.id} data={thread} />
                 ))}
               </>

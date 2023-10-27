@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import Thread from "@/components/Thread";
+import Thread from "@threads/components/Thread";
 
 export default function Home() {
   return (

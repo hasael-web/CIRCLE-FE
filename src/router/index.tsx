@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "@/pages/Home";
 import Search from "@/pages/Search";
-import Profile from "@/pages/Follow";
-import Follow from "@/pages/Profile";
+import Follow from "@/pages/Follow";
+import Profile from "@/pages/Profile";
 import Main from "@/layout/Main";
 
 export default function Router() {
@@ -20,13 +20,34 @@ export default function Router() {
           />
         </Route>
         <Route path="/search">
-          <Route index element={<Search />} />
+          <Route
+            index
+            element={
+              <Main>
+                <Search />
+              </Main>
+            }
+          />
         </Route>
         <Route path="/follow">
-          <Route index element={<Follow />} />
+          <Route
+            index
+            element={
+              <Main>
+                <Follow />
+              </Main>
+            }
+          />
         </Route>
         <Route path="/profile">
-          <Route index element={<Profile />} />
+          <Route
+            index
+            element={
+              <Main>
+                <Profile />
+              </Main>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

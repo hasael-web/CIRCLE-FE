@@ -8,7 +8,7 @@ export default defineConfig({
   resolve: {
     alias: [
       { find: "@", replacement: path.resolve(__dirname, "src") },
-      { find: "@threads", replacement: path.resolve(__dirname, "src/features/threads/components") },
+      { find: "@threads", replacement: path.resolve(__dirname, "src/features/threads") },
     ],
   },
 });

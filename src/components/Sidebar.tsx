@@ -1,11 +1,11 @@
-import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { Fragment } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { BsHouse, BsHouseFill } from "react-icons/bs";
-import { RiUserSearchFill, RiUserSearchLine } from "react-icons/ri";
-import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
+import { BsHouse, BsHouseFill } from "react-icons/bs";
 import { FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
+import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
+import { RiUserSearchFill, RiUserSearchLine } from "react-icons/ri";
 
 export default function Sidebar() {
   const location = useLocation();

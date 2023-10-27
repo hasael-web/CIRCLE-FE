@@ -22,7 +22,7 @@
     "types": ["node"],
     "paths": {
       "@/*": ["./src/*"],
-      "@threads/*": ["./src/features/threads/components/*"],
+      "@threads/*": ["./src/features/threads/*"],
     }
   },
   "include": ["src"],

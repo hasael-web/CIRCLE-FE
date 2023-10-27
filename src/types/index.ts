@@ -1,4 +1,4 @@
-export type ThreadsType = {
+export type ThreadHomeType = {
   id: string;
   content: string;
   image: string;
@@ -14,79 +14,7 @@ export type ThreadsType = {
   replies: number;
 };
 
-export type ThreadDetailType = {
-  id: string;
+export type ThreadPostType = {
   content: string;
-  image: string;
-  created_at: string;
-  updated_at: string;
-  user: {
-    id: string;
-    username: string;
-    fullname: string;
-    profile_picture: string;
-  };
-  likes: number;
-  replies: [
-    {
-      id: string;
-      content: string;
-      image: string | null;
-      created_at: string;
-      updated_at: string;
-    }
-  ];
-};
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-export type SuggestedType = {
-  photoProfile: string;
-  name: string;
-  username: string;
-  followed: boolean;
+  image?: string;
 };

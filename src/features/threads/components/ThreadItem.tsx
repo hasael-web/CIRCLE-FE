@@ -2,27 +2,27 @@ import { Fragment, useState } from "react";
 import {
   Box,
   Flex,
-  Image,
   Text,
-  useDisclosure,
+  Image,
   Modal,
   ModalBody,
-  ModalCloseButton,
   ModalContent,
+  useDisclosure,
+  ModalCloseButton,
 } from "@chakra-ui/react";
 import moment from "moment";
-import { ThreadsType } from "@/types";
+import { Link } from "react-router-dom";
 import { AiOutlineHeart } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { ThreadHomeType } from "@/types";
 
 interface ThreadItemPropsInterface {
-  data: ThreadsType;
+  data: ThreadHomeType;
 }
 
 export default function ThreadItem(props: ThreadItemPropsInterface) {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const [threadSelected, setThreadSelected] = useState<ThreadsType | null>(
+  const [threadSelected, setThreadSelected] = useState<ThreadHomeType | null>(
     null
   );
 

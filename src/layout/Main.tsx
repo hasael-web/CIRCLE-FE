@@ -1,7 +1,7 @@
 import { Fragment, ReactNode } from "react";
 import { Flex } from "@chakra-ui/react";
 import Sidebar from "@/components/Sidebar";
-import Widget from "@/components/Widget";
+// import Widget from "@/components/Widget";
 
 export default function Main({ children }: { children: ReactNode }) {
   return (
@@ -9,7 +9,7 @@ export default function Main({ children }: { children: ReactNode }) {
       <Flex color="white" h={"100vh"}>
         <Sidebar />
         {children}
-        <Widget />
+        {/* <Widget /> */}
       </Flex>
     </Fragment>
   );
