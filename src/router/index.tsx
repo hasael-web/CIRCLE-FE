@@ -1,5 +1,5 @@
 import { useEffect, useState, ReactNode } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, BrowserRouter, Navigate } from "react-router-dom";
 import { Flex, Spinner } from "@chakra-ui/react";
 import Main from "@/layout/Main";
 import HomePage from "@/pages/HomePage";
@@ -11,16 +11,15 @@ import LoginPage from "@/pages/LoginPage";
 import { API } from "@/utils/api";
 
 export default function Router() {
-  const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [checkAuthFinish, setCheckAuthFinish] = useState<boolean>(true);
 
   async function authCheck() {
     try {
       await API.get("/api/v1/check");
-      setIsLoading(false);
+      setCheckAuthFinish(false);
     } catch (error) {
       localStorage.clear();
-      navigate("/login");
+      return <Navigate to="/login" />;
     }
   }
 
@@ -28,7 +27,7 @@ export default function Router() {
     if (localStorage.getItem("jwtToken")) {
       authCheck();
     } else {
-      setIsLoading(false);
+      setCheckAuthFinish(false);
     }
   }, []);
 
@@ -38,7 +37,7 @@ export default function Router() {
     if (jwtToken) {
       return children;
     }
-    navigate("/login");
+    return <Navigate to="/login" />;
   }
 
   function IsNotLogged({ children }: { children: ReactNode }) {
@@ -47,12 +46,12 @@ export default function Router() {
     if (!jwtToken) {
       return children;
     }
-    navigate("/");
+    return <Navigate to="/" />;
   }
 
   return (
     <>
-      {isLoading && (
+      {checkAuthFinish && (
         <Flex
           justifyContent={"center"}
           alignItems={"center"}
@@ -70,77 +69,79 @@ export default function Router() {
         </Flex>
       )}
 
-      {!isLoading && (
-        <Routes>
-          <Route path="/">
-            <Route
-              index
-              element={
-                <IsLogged>
-                  <Main>
-                    <HomePage />
-                  </Main>
-                </IsLogged>
-              }
-            />
-          </Route>
-          <Route path="/search">
-            <Route
-              index
-              element={
-                <IsLogged>
-                  <Main>
-                    <SearchPage />
-                  </Main>
-                </IsLogged>
-              }
-            />
-          </Route>
-          <Route path="/follow">
-            <Route
-              index
-              element={
-                <IsLogged>
-                  <Main>
-                    <FollowPage />
-                  </Main>
-                </IsLogged>
-              }
-            />
-          </Route>
-          <Route path="/profile">
-            <Route
-              index
-              element={
-                <IsLogged>
-                  <Main>
-                    <ProfilePage />
-                  </Main>
-                </IsLogged>
-              }
-            />
-          </Route>
-          <Route path="/register">
-            <Route
-              index
-              element={
-                <IsNotLogged>
-                  <RegisterPage />
-                </IsNotLogged>
-              }
-            />
-          </Route>
-          <Route path="/login">
-            <Route
-              index
-              element={
-                <IsNotLogged>
-                  <LoginPage />
-                </IsNotLogged>
-              }
-            />
-          </Route>
-        </Routes>
+      {!checkAuthFinish && (
+        <BrowserRouter>
+          <Routes>
+            <Route path="/">
+              <Route
+                index
+                element={
+                  <IsLogged>
+                    <Main>
+                      <HomePage />
+                    </Main>
+                  </IsLogged>
+                }
+              />
+            </Route>
+            <Route path="/search">
+              <Route
+                index
+                element={
+                  <IsLogged>
+                    <Main>
+                      <SearchPage />
+                    </Main>
+                  </IsLogged>
+                }
+              />
+            </Route>
+            <Route path="/follow">
+              <Route
+                index
+                element={
+                  <IsLogged>
+                    <Main>
+                      <FollowPage />
+                    </Main>
+                  </IsLogged>
+                }
+              />
+            </Route>
+            <Route path="/profile">
+              <Route
+                index
+                element={
+                  <IsLogged>
+                    <Main>
+                      <ProfilePage />
+                    </Main>
+                  </IsLogged>
+                }
+              />
+            </Route>
+            <Route path="/register">
+              <Route
+                index
+                element={
+                  <IsNotLogged>
+                    <RegisterPage />
+                  </IsNotLogged>
+                }
+              />
+            </Route>
+            <Route path="/login">
+              <Route
+                index
+                element={
+                  <IsNotLogged>
+                    <LoginPage />
+                  </IsNotLogged>
+                }
+              />
+            </Route>
+          </Routes>
+        </BrowserRouter>
       )}
     </>
   );

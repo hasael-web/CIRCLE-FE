@@ -1,3 +1,4 @@
+// AUTH
 export type RegisterType = {
   fullName: string;
   email: string;
@@ -8,7 +9,9 @@ export type LoginType = {
   emailOrUsername: string;
   password: string;
 };
+// AUTH
 
+// THREAD
 export type ThreadLikeType = {
   id: string;
   created_at: string;
@@ -65,3 +68,18 @@ export type ThreadPostType = {
   content: string;
   image?: string;
 };
+// THREAD
+
+// USER
+export type UserProfileType = {
+  id: string;
+  username: string;
+  fullname: string;
+  email: string;
+  password: null;
+  profile_picture: string;
+  bio: string | null;
+  created_at: string;
+  updated_at: string;
+};
+// USER

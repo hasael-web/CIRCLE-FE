@@ -9,7 +9,6 @@ import {
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { ToastContainer, toast } from "react-toastify";
-import { BrowserRouter } from "react-router-dom";
 import Router from "./router";
 import store from "./redux/store";
 import getError from "./utils/getError";
@@ -37,9 +36,7 @@ export default function App() {
       <Provider store={store}>
         <QueryClientProvider client={queryCLient}>
           <ChakraProvider>
-            <BrowserRouter>
-              <Router />
-            </BrowserRouter>
+            <Router />
           </ChakraProvider>
           <ReactQueryDevtools initialIsOpen={false} position="bottom" />
         </QueryClientProvider>

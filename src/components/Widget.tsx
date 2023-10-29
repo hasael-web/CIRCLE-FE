@@ -7,12 +7,23 @@ import {
   Image,
   Text,
 } from "@chakra-ui/react";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 // import suggesteds from "../mocks/suggesteds.json";
 // import SuggestedUser from "@/components/SuggestedUser";
 import Watermark from "@/components/Watermark";
+import { useAppDispatch, useAppSelector } from "@/redux/store";
+import { getProfile } from "@/redux/user/profileSlice";
 
 export default function Widget() {
+  const profile = useAppSelector((state) => state.profile);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(getProfile());
+  }, []);
+
+  console.log(profile);
+
   return (
     <Fragment>
       <Box
