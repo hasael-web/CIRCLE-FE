@@ -1,6 +1,7 @@
 import "react-toastify/dist/ReactToastify.css";
 import { Fragment } from "react";
 import { ChakraProvider } from "@chakra-ui/react";
+import { Provider } from "react-redux";
 import {
   QueryClientProvider,
   QueryClient,
@@ -10,6 +11,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { AxiosError } from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import Router from "./router";
+import store from "./redux/store";
 
 const queryCLient = new QueryClient({
   queryCache: new QueryCache({
@@ -37,12 +39,14 @@ const queryCLient = new QueryClient({
 export default function App() {
   return (
     <Fragment>
-      <QueryClientProvider client={queryCLient}>
-        <ChakraProvider>
-          <Router />
-        </ChakraProvider>
-        <ReactQueryDevtools initialIsOpen={false} position="bottom" />
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryCLient}>
+          <ChakraProvider>
+            <Router />
+          </ChakraProvider>
+          <ReactQueryDevtools initialIsOpen={false} position="bottom" />
+        </QueryClientProvider>
+      </Provider>
       <ToastContainer />
     </Fragment>
   );

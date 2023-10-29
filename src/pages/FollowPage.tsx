@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 
-export default function Search() {
+export default function FollowPage() {
   return (
     <Fragment>
-      <h1>Search</h1>
+      <h1>Follow</h1>
     </Fragment>
   );
 }

@@ -1,9 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "@/pages/Home";
-import Search from "@/pages/Search";
-import Follow from "@/pages/Follow";
-import Profile from "@/pages/Profile";
 import Main from "@/layout/Main";
+import HomePage from "@/pages/HomePage";
+import SearchPage from "@/pages/SearchPage";
+import FollowPage from "@/pages/FollowPage";
+import ProfilePage from "@/pages/ProfilePage";
+import RegisterPage from "@/pages/RegisterPage";
 
 export default function Router() {
   return (
@@ -14,7 +15,7 @@ export default function Router() {
             index
             element={
               <Main>
-                <Home />
+                <HomePage />
               </Main>
             }
           />
@@ -24,7 +25,7 @@ export default function Router() {
             index
             element={
               <Main>
-                <Search />
+                <SearchPage />
               </Main>
             }
           />
@@ -34,7 +35,7 @@ export default function Router() {
             index
             element={
               <Main>
-                <Follow />
+                <FollowPage />
               </Main>
             }
           />
@@ -44,10 +45,13 @@ export default function Router() {
             index
             element={
               <Main>
-                <Profile />
+                <ProfilePage />
               </Main>
             }
           />
+        </Route>
+        <Route path="/register">
+          <Route index element={<RegisterPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

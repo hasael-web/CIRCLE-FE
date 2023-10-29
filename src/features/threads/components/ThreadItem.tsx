@@ -83,7 +83,7 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
                 }}
               />
               <Text fontSize={"sm"} color={"gray.400"}>
-                {props.data.likes}
+                {props.data.likes.length}
               </Text>
             </Flex>
             <Link to={`/reply/${props.data.id}`}>

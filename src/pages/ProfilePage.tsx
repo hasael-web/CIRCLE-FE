@@ -1,9 +1,9 @@
 import { Fragment } from "react";
 
-export default function Follow() {
+export default function ProfilePage() {
   return (
     <Fragment>
-      <h1>Follow</h1>
+      <h1>Profile</h1>
     </Fragment>
   );
 }
