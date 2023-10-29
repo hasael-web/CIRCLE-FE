@@ -28,8 +28,10 @@ export default function Watermark() {
             <Image
               src="https://raw.githubusercontent.com/taufik-hdyt/dwonsitecircle/master/src/assets/logo.png"
               alt="Dumbways Logo"
-              width={"17px"}
+              width={"20px"}
               display={"inline"}
+              position={"relative"}
+              bottom={"-3px"}
             />{" "}
             Dumbways Indonesia - #1 Coding Bootcamp
           </Text>

@@ -2,7 +2,7 @@ import { Dispatch, SetStateAction } from "react";
 import Dropzone, { FileRejection } from "react-dropzone";
 import { toast } from "react-toastify";
 import ImagePreview from "./ImagePreview";
-import { API } from "@/libs/api";
+import { API } from "@/utils/api";
 import { Box, Button, Flex, Spinner } from "@chakra-ui/react";
 
 interface UploadPropsInterface {

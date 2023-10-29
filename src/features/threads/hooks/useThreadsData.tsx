@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 import { AxiosError } from "axios";
 import { toast } from "react-toastify";
-import { API } from "@/libs/api";
+import { API } from "@/utils/api";
 import { ThreadPostType } from "@/types";
 
 const fetchThreads = async () => {

@@ -1,3 +1,9 @@
+export type RegisterType = {
+  fullName: string;
+  email: string;
+  password: string;
+};
+
 export type ThreadHomeType = {
   id: string;
   content: string;
