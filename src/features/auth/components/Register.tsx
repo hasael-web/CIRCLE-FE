@@ -1,5 +1,8 @@
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
   Box,
   Button,
   Flex,
@@ -9,14 +12,19 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { useAppSelector } from "@/redux/store";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegister } from "@/hooks/useRegister";
 
 export default function Register() {
+  const navigate = useNavigate();
   const { form, handleChange, handleRegister } = useRegister();
   const auth = useAppSelector((state) => state.auth);
 
-  console.log(auth);
+  useEffect(() => {
+    if (auth.isRegisterSuccess) {
+      navigate("/login");
+    }
+  }, [auth.isRegisterSuccess]);
 
   return (
     <Fragment>
@@ -28,6 +36,12 @@ export default function Register() {
           <Text fontSize={"xl"} mb={3}>
             Create account Circle
           </Text>
+          {auth.isError && (
+            <Alert status="error" bg={"#FF6969"} mb={3} borderRadius={5}>
+              <AlertIcon color={"white"} />
+              <AlertDescription>{auth.error}</AlertDescription>
+            </Alert>
+          )}
           <FormControl mb={4}>
             <Input
               type="text"
