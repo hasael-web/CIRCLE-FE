@@ -12,25 +12,25 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Link, useNavigate } from "react-router-dom";
-import { useRegister } from "@/features/auth/hooks/useRegister";
+import { useLogin } from "@/features/auth/hooks/useLogin";
 
-export default function Register() {
+export default function Login() {
   const navigate = useNavigate();
   const {
     form,
     handleChange,
-    handleRegister,
+    handleLogin,
     isLoading,
     isError,
     error,
-    isRegisterSuccess,
-  } = useRegister();
+    isLoginSuccess,
+  } = useLogin();
 
   useEffect(() => {
-    if (isRegisterSuccess) {
-      navigate("/login");
+    if (isLoginSuccess) {
+      navigate("/");
     }
-  }, [isRegisterSuccess]);
+  }, [isLoginSuccess]);
 
   return (
     <Fragment>
@@ -40,7 +40,7 @@ export default function Register() {
             circle
           </Heading>
           <Text fontSize={"xl"} mb={3}>
-            Create account Circle
+            Login to Circle
           </Text>
           {isError && (
             <Alert status="error" bg={"#FF6969"} mb={3} borderRadius={5}>
@@ -51,18 +51,9 @@ export default function Register() {
           <FormControl mb={4}>
             <Input
               type="text"
-              placeholder="Full Name *"
-              name="fullName"
-              value={form.fullName}
-              onChange={handleChange}
-            />
-          </FormControl>
-          <FormControl mb={4}>
-            <Input
-              type="email"
-              placeholder="Email *"
-              name="email"
-              value={form.email}
+              placeholder="Email/Username *"
+              name="emailOrUsername"
+              value={form.emailOrUsername}
               onChange={handleChange}
             />
           </FormControl>
@@ -93,15 +84,15 @@ export default function Register() {
               colorScheme="green"
               width={"100%"}
               mb={3}
-              onClick={handleRegister}
+              onClick={handleLogin}
             >
-              Register
+              Login
             </Button>
           )}
           <Text>
-            Already have an account?{" "}
-            <Link style={{ color: "#48bb78" }} to={"/login"}>
-              Login
+            Have no account yet?{" "}
+            <Link style={{ color: "#48bb78" }} to={"/register"}>
+              Register
             </Link>
           </Text>
         </Box>

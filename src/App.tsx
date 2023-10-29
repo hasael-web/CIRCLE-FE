@@ -8,21 +8,16 @@ import {
   QueryCache,
 } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
-import { AxiosError } from "axios";
 import { ToastContainer, toast } from "react-toastify";
+import { BrowserRouter } from "react-router-dom";
 import Router from "./router";
 import store from "./redux/store";
+import getError from "./utils/getError";
 
 const queryCLient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response) {
-          error.message = error.response?.data.error;
-        }
-      }
-
-      toast.error(error.message, {
+      toast.error(getError(error), {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -42,7 +37,9 @@ export default function App() {
       <Provider store={store}>
         <QueryClientProvider client={queryCLient}>
           <ChakraProvider>
-            <Router />
+            <BrowserRouter>
+              <Router />
+            </BrowserRouter>
           </ChakraProvider>
           <ReactQueryDevtools initialIsOpen={false} position="bottom" />
         </QueryClientProvider>

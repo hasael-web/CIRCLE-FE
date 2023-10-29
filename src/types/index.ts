@@ -4,6 +4,11 @@ export type RegisterType = {
   password: string;
 };
 
+export type LoginType = {
+  emailOrUsername: string;
+  password: string;
+};
+
 export type ThreadLikeType = {
   id: string;
   created_at: string;

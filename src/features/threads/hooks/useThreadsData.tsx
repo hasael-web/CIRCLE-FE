@@ -9,27 +9,26 @@ import { toast } from "react-toastify";
 import { API } from "@/utils/api";
 import { ThreadPostType } from "@/types";
 
+// fetch threads
 const fetchThreads = async () => {
   const response = await API.get("/api/v1/threads");
   return response.data;
 };
 
-const fetchInfiniteThreads = async ({ pageParam = 1 }) => {
-  const response = await API.get(`/api/v1/threads?page=${pageParam}`);
-  return response.data;
-};
-
-const postNewThread = (thread: ThreadPostType) => {
-  return API.post("/api/v1/thread", thread);
-};
-
-export const useThreadsData = () => {
+export const useThreads = () => {
   return useQuery({
     queryKey: ["threads"],
     queryFn: fetchThreads,
     staleTime: 10000,
     refetchOnWindowFocus: false,
   });
+};
+// fetch threads
+
+// fetch infinite threads
+const fetchInfiniteThreads = async ({ pageParam = 1 }) => {
+  const response = await API.get(`/api/v1/threads?page=${pageParam}`);
+  return response.data;
 };
 
 export const useInfiniteThreads = () => {
@@ -48,12 +47,18 @@ export const useInfiniteThreads = () => {
     initialPageParam: 1,
   });
 };
+// fetch infinite threads
+
+// post thread
+const postThread = (thread: ThreadPostType) => {
+  return API.post("/api/v1/thread", thread);
+};
 
 export const usePostThread = (reset: () => void) => {
   const queryCLient = useQueryClient();
 
   return useMutation({
-    mutationFn: postNewThread,
+    mutationFn: postThread,
     onSuccess: () => {
       queryCLient.invalidateQueries({
         // queryKey: ["threads"],
@@ -81,3 +86,4 @@ export const usePostThread = (reset: () => void) => {
     },
   });
 };
+// post thread

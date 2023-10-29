@@ -27,7 +27,7 @@ export const register = createAsyncThunk<
     const response = await API.post("/api/v1/register", data);
     return response.data;
   } catch (error) {
-    let errorMessage: string = "Unknown Error Occured";
+    let errorMessage: string = "";
     if (error instanceof AxiosError) {
       if (error.response) {
         errorMessage = error.response?.data.error;
