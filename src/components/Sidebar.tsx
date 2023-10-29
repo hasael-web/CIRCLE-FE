@@ -90,7 +90,9 @@ export default function Sidebar() {
               size="md"
               width={"100%"}
               borderRadius={"50px"}
-              onClick={() => alert("CREATE POST")}
+              onClick={() => {
+                document.getElementById("insertThread")?.focus();
+              }}
             >
               Create Post
             </Button>

@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import { Box, Button, Flex, Spinner, Text } from "@chakra-ui/react";
-import HomeThreadForm from "@threads/components/HomeThreadForm";
+import ThreadForm from "@threads/components/ThreadForm";
 import ThreadItem from "@threads/components/ThreadItem";
 import { useInfiniteThreads } from "@threads/hooks/useThreadsData";
 import { ThreadHomeType } from "@/types";
@@ -23,7 +23,7 @@ export default function Thread() {
         <Text fontSize={"2xl"} mb={"10px"}>
           Home
         </Text>
-        <HomeThreadForm />
+        <ThreadForm />
         {isLoading ? (
           <Box textAlign={"center"}>
             <Spinner size="xl" />

@@ -8,15 +8,15 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Fragment } from "react";
-import suggesteds from "../mocks/suggesteds.json";
-import SuggestedUser from "@/feautures/threads/components/SuggestedUser";
-import Watermark from "@/feautures/threads/components/Watermark";
+// import suggesteds from "../mocks/suggesteds.json";
+// import SuggestedUser from "@/components/SuggestedUser";
+import Watermark from "@/components/Watermark";
 
 export default function Widget() {
   return (
     <Fragment>
       <Box
-        w={"30%"}
+        w={"31%"}
         px={10}
         py={10}
         style={{ borderLeft: "3px solid #3a3a3a" }}
@@ -92,9 +92,9 @@ export default function Widget() {
             <Text fontSize={"xl"} mb={3}>
               Suggested For You
             </Text>
-            {suggesteds.map((suggested) => (
+            {/* {suggesteds.map((suggested) => (
               <SuggestedUser data={suggested} />
-            ))}
+            ))} */}
           </CardBody>
         </Card>
 

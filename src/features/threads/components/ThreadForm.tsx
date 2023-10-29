@@ -21,7 +21,7 @@ import { usePostThread } from "../hooks/useThreadsData";
 import { ThreadPostType } from "@/types";
 import Upload from "@/components/Upload";
 
-export default function HomeThreadForm() {
+export default function ThreadForm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string>("");
@@ -71,6 +71,7 @@ export default function HomeThreadForm() {
             onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
               setContent(event.target.value)
             }
+            id="insertThread"
           />
         </FormControl>
         <Box
