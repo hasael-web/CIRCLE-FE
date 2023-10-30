@@ -24,6 +24,8 @@ export function useRegister() {
 
   async function handleRegister() {
     try {
+      setIsLoading(true);
+
       const response = await API.post("/api/v1/register", form);
       toast.success(response.data.message, {
         position: "top-center",

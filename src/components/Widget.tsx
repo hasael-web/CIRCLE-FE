@@ -1,29 +1,11 @@
-import {
-  Box,
-  Button,
-  Card,
-  CardBody,
-  Flex,
-  Image,
-  Text,
-} from "@chakra-ui/react";
-import { Fragment, useEffect } from "react";
+import { Box, Card, CardBody, Text } from "@chakra-ui/react";
+import { Fragment } from "react";
 // import suggesteds from "../mocks/suggesteds.json";
 // import SuggestedUser from "@/components/SuggestedUser";
 import Watermark from "@/components/Watermark";
-import { useAppDispatch, useAppSelector } from "@/redux/store";
-import { getProfile } from "@/redux/user/profileSlice";
+import Profile from "./Profile";
 
 export default function Widget() {
-  const profile = useAppSelector((state) => state.profile);
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(getProfile());
-  }, []);
-
-  console.log(profile);
-
   return (
     <Fragment>
       <Box
@@ -34,69 +16,7 @@ export default function Widget() {
         overflow={"auto"}
         className="hide-scroll"
       >
-        <Card bg={"#3a3a3a"} color={"white"} mb={"15px"}>
-          <CardBody py={4} px={5}>
-            <Text fontSize={"xl"} mb={3}>
-              My Profile
-            </Text>
-            <Box position={"relative"}>
-              <Image
-                src="https://cdn.pnghd.pics/data/607/green-gradient-background-hd-28.jpg"
-                alt="Green Gradient"
-                borderRadius={"10px"}
-                width={"100%"}
-                height={"80px"}
-                objectFit={"cover"}
-              />
-              <Image
-                borderRadius="full"
-                border={"5px solid #3a3a3a"}
-                boxSize="75px"
-                objectFit="cover"
-                src="https://bit.ly/dan-abramov"
-                alt="Dan Abramov"
-                position={"absolute"}
-                top={"40px"}
-                left={"20px"}
-              />
-              <Button
-                color={"white"}
-                _hover={{ bg: "#38a169", borderColor: "#38a169" }}
-                size="sm"
-                borderRadius={"full"}
-                variant="outline"
-                position={"absolute"}
-                bottom={"-50px"}
-                right={"0px"}
-              >
-                Edit Profile
-              </Button>
-            </Box>
-            <Text fontSize={"2xl"} mt={"40px"} fontWeight={"bold"}>
-              Dan Abramov
-            </Text>
-            <Text fontSize={"sm"} color={"gray.400"}>
-              @danabrara
-            </Text>
-            <Text fontSize={"md"}>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-            </Text>
-            <Flex mt={"10px"} gap={3}>
-              <Box fontSize={"md"}>
-                117{" "}
-                <Text display={"inline"} color={"gray.400"}>
-                  Following
-                </Text>
-              </Box>
-              <Box fontSize={"md"}>
-                221{" "}
-                <Text display={"inline"} color={"gray.400"}>
-                  Followers
-                </Text>
-              </Box>
-            </Flex>
-          </CardBody>
-        </Card>
+        <Profile />
 
         <Card bg={"#3a3a3a"} color={"white"} mb={"15px"}>
           <CardBody py={4} px={5}>

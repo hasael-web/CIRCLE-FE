@@ -11,7 +11,11 @@ import { ThreadPostType } from "@/types";
 
 // fetch threads
 const fetchThreads = async () => {
-  const response = await API.get("/api/v1/threads");
+  const response = await API.get("/api/v1/threads", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+    },
+  });
   return response.data;
 };
 
@@ -27,7 +31,11 @@ export const useThreads = () => {
 
 // fetch infinite threads
 const fetchInfiniteThreads = async ({ pageParam = 1 }) => {
-  const response = await API.get(`/api/v1/threads?page=${pageParam}`);
+  const response = await API.get(`/api/v1/threads?page=${pageParam}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+    },
+  });
   return response.data;
 };
 
@@ -51,7 +59,11 @@ export const useInfiniteThreads = () => {
 
 // post thread
 const postThread = (thread: ThreadPostType) => {
-  return API.post("/api/v1/thread", thread);
+  return API.post("/api/v1/thread", thread, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+    },
+  });
 };
 
 export const usePostThread = (reset: () => void) => {

@@ -23,6 +23,8 @@ export function useLogin() {
 
   async function handleLogin() {
     try {
+      setIsLoading(true);
+
       const response = await API.post("/api/v1/login", form);
       toast.success(response.data.message, {
         position: "top-center",
@@ -34,11 +36,11 @@ export function useLogin() {
         progress: undefined,
         theme: "colored",
       });
+      localStorage.setItem("jwtToken", response.data.token);
+
       setIsError(false);
       setError("");
       setIsLoginSuccess(true);
-
-      localStorage.setItem("jwtToken", response.data.token)
     } catch (error) {
       setIsError(true);
       setError(getError(error));

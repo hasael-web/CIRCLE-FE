@@ -71,6 +71,13 @@ export type ThreadPostType = {
 // THREAD
 
 // USER
+export type FollowType = {
+  id: string;
+  username: string;
+  fullname: string;
+  profile_picture: string;
+};
+
 export type UserProfileType = {
   id: string;
   username: string;
@@ -81,5 +88,7 @@ export type UserProfileType = {
   bio: string | null;
   created_at: string;
   updated_at: string;
+  followers: FollowType[],
+  followings: FollowType[],
 };
 // USER

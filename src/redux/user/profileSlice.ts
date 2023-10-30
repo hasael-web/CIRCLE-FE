@@ -6,14 +6,14 @@ import { API } from "@/utils/api";
 import getError from "@/utils/getError";
 
 type initialStateT = {
-  user: UserProfileType | null;
+  data: UserProfileType | null;
   isLoading: boolean;
   isError: boolean;
   error: string;
 };
 
 const initialState: initialStateT = {
-  user: null,
+  data: null,
   isLoading: false,
   isError: false,
   error: "",
@@ -23,7 +23,11 @@ export const getProfile = createAsyncThunk(
   "profile",
   async (_, { rejectWithValue }) => {
     try {
-      const response = await API.get("/api/v1/user/profile");
+      const response = await API.get("/api/v1/user/profile", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+      });
       return response.data.data;
     } catch (error) {
       return rejectWithValue({ errorMessage: getError(error) });
@@ -34,7 +38,7 @@ export const getProfile = createAsyncThunk(
 const profileSlice = createSlice({
   name: "profile",
   initialState,
-  reducers: {},
+  reducers: {}, // tidak diisi karena memakai extraReducers
   extraReducers: (builder) => {
     builder.addCase(getProfile.pending, (state) => {
       state.isLoading = true;
@@ -42,7 +46,7 @@ const profileSlice = createSlice({
     builder.addCase(
       getProfile.fulfilled,
       (state, action: PayloadAction<UserProfileType>) => {
-        state.user = action.payload;
+        state.data = action.payload;
         state.isLoading = false;
         state.isError = false;
         state.error = "";
@@ -51,7 +55,7 @@ const profileSlice = createSlice({
     builder.addCase(
       getProfile.rejected,
       (state, action: PayloadAction<any>) => {
-        state.user = null;
+        state.data = null;
         state.isLoading = false;
         state.isError = true;
         state.error = action.payload?.errorMessage || "Unknown Error Occured";

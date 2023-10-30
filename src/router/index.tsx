@@ -15,11 +15,16 @@ export default function Router() {
 
   async function authCheck() {
     try {
-      await API.get("/api/v1/check");
-      setCheckAuthFinish(false);
+      await API.get("/api/v1/check", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+      });
     } catch (error) {
       localStorage.clear();
       return <Navigate to="/login" />;
+    } finally {
+      setCheckAuthFinish(false);
     }
   }
 
