@@ -67,6 +67,7 @@ export type ThreadDetailType = {
 export type ThreadPostType = {
   content: string;
   image?: string;
+  uploadId?: number;
 };
 // THREAD
 

@@ -4,10 +4,10 @@ import {
   useQueryClient,
   useInfiniteQuery,
 } from "@tanstack/react-query";
-import { AxiosError } from "axios";
 import { toast } from "react-toastify";
 import { API } from "@/utils/api";
 import { ThreadPostType } from "@/types";
+import getError from "@/utils/getError";
 
 // fetch threads
 const fetchThreads = async () => {
@@ -79,13 +79,7 @@ export const usePostThread = (reset: () => void) => {
       reset();
     },
     onError: (error) => {
-      if (error instanceof AxiosError) {
-        if (error.response) {
-          error.message = error.response?.data.error;
-        }
-      }
-
-      toast.error(error.message, {
+      toast.error(getError(error), {
         position: "top-center",
         autoClose: 5000,
         hideProgressBar: false,
@@ -99,3 +93,38 @@ export const usePostThread = (reset: () => void) => {
   });
 };
 // post thread
+
+// like thread
+const postLikeThread = (threadId: string) => {
+  return API.post(`/api/v1/thread/${threadId}/like`, "", {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+    },
+  });
+};
+
+export const usePostLike = () => {
+  const queryCLient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postLikeThread,
+    onSuccess: () => {
+      queryCLient.invalidateQueries({
+        queryKey: ["threads-infinite"],
+      });
+    },
+    onError: (error) => {
+      toast.error(getError(error), {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    },
+  });
+};
+// like thread

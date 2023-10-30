@@ -28,6 +28,7 @@ export default function ThreadForm() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string>("");
+  const [uploadId, setUploadId] = useState<string>("");
 
   const [imageStatus, setImageStatus] = useState<{
     name: string;
@@ -51,7 +52,10 @@ export default function ThreadForm() {
     const thread: ThreadPostType = {
       content,
     };
-    if (image) thread.image = image;
+    if (image) {
+      thread.image = image;
+      thread.uploadId = parseInt(uploadId, 10);
+    }
 
     mutate(thread);
   };
@@ -122,6 +126,7 @@ export default function ThreadForm() {
               imageStatus={imageStatus}
               setImageStatus={setImageStatus}
               disabled={isUploadLoading}
+              setUploadId={setUploadId}
             />
           </ModalBody>
           <ModalFooter>

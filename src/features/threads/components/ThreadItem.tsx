@@ -12,19 +12,24 @@ import {
 } from "@chakra-ui/react";
 import moment from "moment";
 import { Link } from "react-router-dom";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import { ThreadHomeType } from "@/types";
+import { usePostLike } from "../hooks/useThreadsData";
+import { useAppSelector } from "@/redux/store";
 
 interface ThreadItemPropsInterface {
   data: ThreadHomeType;
 }
 
 export default function ThreadItem(props: ThreadItemPropsInterface) {
+  const { data: profileData } = useAppSelector((state) => state.profile);
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [threadSelected, setThreadSelected] = useState<ThreadHomeType | null>(
     null
   );
+
+  const { mutate } = usePostLike();
 
   return (
     <Fragment>
@@ -75,13 +80,27 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
           )}
           <Flex gap={"15px"}>
             <Flex alignItems={"center"}>
-              <AiOutlineHeart
-                style={{
-                  fontSize: "20px",
-                  marginRight: "5px",
-                  marginTop: "1px",
-                }}
-              />
+              <Box onClick={() => mutate(props.data.id)} cursor={"pointer"}>
+                {props.data.likes
+                  .map((like) => like.user.id)
+                  .includes(profileData?.id ? profileData?.id : "") ? (
+                  <AiFillHeart
+                    style={{
+                      fontSize: "20px",
+                      marginRight: "5px",
+                      marginTop: "1px",
+                    }}
+                  />
+                ) : (
+                  <AiOutlineHeart
+                    style={{
+                      fontSize: "20px",
+                      marginRight: "5px",
+                      marginTop: "1px",
+                    }}
+                  />
+                )}
+              </Box>
               <Text fontSize={"sm"} color={"gray.400"}>
                 {props.data.likes.length}
               </Text>
