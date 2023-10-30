@@ -20,8 +20,11 @@ import { RiImageAddFill } from "react-icons/ri";
 import { usePostThread } from "../hooks/useThreadsData";
 import { ThreadPostType } from "@/types";
 import Upload from "@/components/Upload";
+import { useAppSelector } from "@/redux/store";
 
 export default function ThreadForm() {
+  const { data: profileData } = useAppSelector((state) => state.profile);
+
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [content, setContent] = useState<string>("");
   const [image, setImage] = useState<string>("");
@@ -60,8 +63,8 @@ export default function ThreadForm() {
           borderRadius="full"
           boxSize="40px"
           objectFit="cover"
-          src="https://bit.ly/dan-abramov"
-          alt="Dan Abramov Profile Page"
+          src={profileData?.profile_picture}
+          alt={profileData?.fullname}
         />
         <FormControl>
           <Input

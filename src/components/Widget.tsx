@@ -1,9 +1,8 @@
-import { Box, Card, CardBody, Text } from "@chakra-ui/react";
+import { Box } from "@chakra-ui/react";
 import { Fragment } from "react";
-// import suggesteds from "../mocks/suggesteds.json";
-// import SuggestedUser from "@/components/SuggestedUser";
 import Watermark from "@/components/Watermark";
 import Profile from "./Profile";
+import Suggested from "./Suggested";
 
 export default function Widget() {
   return (
@@ -17,18 +16,7 @@ export default function Widget() {
         className="hide-scroll"
       >
         <Profile />
-
-        <Card bg={"#3a3a3a"} color={"white"} mb={"15px"}>
-          <CardBody py={4} px={5}>
-            <Text fontSize={"xl"} mb={3}>
-              Suggested For You
-            </Text>
-            {/* {suggesteds.map((suggested) => (
-              <SuggestedUser data={suggested} />
-            ))} */}
-          </CardBody>
-        </Card>
-
+        <Suggested />
         <Watermark />
       </Box>
     </Fragment>

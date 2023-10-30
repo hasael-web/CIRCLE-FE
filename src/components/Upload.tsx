@@ -52,7 +52,11 @@ export default function Upload({
       const formData = new FormData();
       formData.append("image", fileAccept, fileAccept.name);
 
-      API.post("/api/v1/upload", formData)
+      API.post("/api/v1/upload", formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+      })
         .then((response) => {
           setFileUpload(response.data.data.url);
         })

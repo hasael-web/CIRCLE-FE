@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { BsHouse, BsHouseFill } from "react-icons/bs";
@@ -8,6 +8,7 @@ import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { RiUserSearchFill, RiUserSearchLine } from "react-icons/ri";
 
 export default function Sidebar() {
+  const navigate = useNavigate();
   const location = useLocation();
 
   return (
@@ -81,21 +82,23 @@ export default function Sidebar() {
                   )}
                 </Text>
                 <Text fontSize={"md"} mt={1}>
-                  Profile
+                  My Profile
                 </Text>
               </Box>
             </Link>
-            <Button
-              colorScheme="green"
-              size="md"
-              width={"100%"}
-              borderRadius={"50px"}
-              onClick={() => {
-                document.getElementById("insertThread")?.focus();
-              }}
-            >
-              Create Post
-            </Button>
+            {location.pathname === "/" && (
+              <Button
+                colorScheme="green"
+                size="md"
+                width={"100%"}
+                borderRadius={"50px"}
+                onClick={() => {
+                  document.getElementById("insertThread")?.focus();
+                }}
+              >
+                Create Post
+              </Button>
+            )}
           </Box>
 
           <Flex alignItems={"center"} gap={3} mb={6}>
@@ -106,7 +109,10 @@ export default function Sidebar() {
               fontSize={"md"}
               mt={1}
               cursor={"pointer"}
-              onClick={() => alert("LOGOUT")}
+              onClick={() => {
+                localStorage.clear();
+                navigate("/login");
+              }}
             >
               Logout
             </Text>
