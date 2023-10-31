@@ -94,15 +94,15 @@ export default function Profile() {
                   </Text>
                   <Flex mt={"10px"} gap={3}>
                     <Box fontSize={"md"}>
-                      {profileData?.followings.length}{" "}
-                      <Text display={"inline"} color={"gray.400"}>
-                        Following
-                      </Text>
-                    </Box>
-                    <Box fontSize={"md"}>
                       {profileData?.followers.length}{" "}
                       <Text display={"inline"} color={"gray.400"}>
                         Followers
+                      </Text>
+                    </Box>
+                    <Box fontSize={"md"}>
+                      {profileData?.followings.length}{" "}
+                      <Text display={"inline"} color={"gray.400"}>
+                        Following
                       </Text>
                     </Box>
                   </Flex>
