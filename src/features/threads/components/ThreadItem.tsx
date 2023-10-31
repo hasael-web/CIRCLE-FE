@@ -54,9 +54,7 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
               </Link>{" "}
               -{" "}
               <Text display={"inline-block"} title={props.data.created_at}>
-                {moment(new Date(props.data.created_at))
-                  .startOf("hour")
-                  .fromNow()}
+                {moment(new Date(props.data.created_at)).calendar()}
               </Text>
             </Box>
           </Flex>

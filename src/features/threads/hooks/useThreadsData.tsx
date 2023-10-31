@@ -43,7 +43,7 @@ export const useInfiniteThreads = () => {
   return useInfiniteQuery({
     queryKey: ["threads-infinite"],
     queryFn: fetchInfiniteThreads,
-    staleTime: 10000,
+    // staleTime: 10000,
     refetchOnWindowFocus: false,
     getNextPageParam: (lastPage, pages) => {
       if (lastPage.data.length) {
@@ -175,18 +175,16 @@ export const useDetailThread = (threadId: string) => {
 
 // post reply
 const postReply = (reply: ReplyPostType) => {
-  return API.post(
-    `/api/v1/thread/${reply.threadId}/reply`,
-    {
-      content: reply.content,
-      image: reply.image,
+  const threadId = reply.threadId;
+  const payload = {
+    ...reply,
+  };
+  delete payload.threadId;
+  return API.post(`/api/v1/thread/${threadId}/reply`, payload, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
     },
-    {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-      },
-    }
-  );
+  });
 };
 
 export const usePostReply = (reset: () => void) => {

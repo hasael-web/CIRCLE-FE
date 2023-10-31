@@ -1,5 +1,15 @@
 import { Fragment } from "react";
-import { Box, Button, Flex, Spinner, Text } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  Box,
+  Button,
+  Flex,
+  Spinner,
+  Text,
+} from "@chakra-ui/react";
+import { FiRefreshCw } from "react-icons/fi";
 import ThreadForm from "@threads/components/ThreadForm";
 import ThreadItem from "@threads/components/ThreadItem";
 import { useInfiniteThreads } from "@threads/hooks/useThreadsData";
@@ -8,6 +18,7 @@ import { ThreadHomeType } from "@/types";
 export default function Thread() {
   const {
     isLoading,
+    refetch,
     data: threads,
     isError,
     error,
@@ -31,9 +42,27 @@ export default function Thread() {
         ) : (
           <>
             {isError ? (
-              <h1>{error.message}</h1>
+              <Alert status="error" bg={"#FF6969"} mb={3} borderRadius={5}>
+                <AlertIcon color={"white"} />
+                <AlertDescription>{error.message}</AlertDescription>
+              </Alert>
             ) : (
               <>
+                <Flex justifyContent={"center"} mb={3}>
+                  <Button
+                    onClick={() => refetch()}
+                    display={"flex"}
+                    gap={"5px"}
+                    colorScheme="blue"
+                    size={"sm"}
+                    borderRadius={"full"}
+                  >
+                    <Text>
+                      <FiRefreshCw />
+                    </Text>
+                    <Text>Refresh</Text>
+                  </Button>
+                </Flex>
                 {threads?.pages.map((group, i) => (
                   <Fragment key={i}>
                     {group.data.map((thread: ThreadHomeType) => (

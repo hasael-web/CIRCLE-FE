@@ -39,7 +39,7 @@ export default function ThreadForm() {
   });
   const [isUploadLoading, setIsUploadLoading] = useState<boolean>(false);
 
-  const { mutate } = usePostThread(() => {
+  const { mutate, isPending } = usePostThread(() => {
     setContent("");
     setImage("");
     setImageStatus({
@@ -62,7 +62,7 @@ export default function ThreadForm() {
 
   return (
     <Fragment>
-      <Flex alignItems={"center"} gap={"10px"} mb={"30px"}>
+      <Flex alignItems={"center"} gap={"10px"} mb={3}>
         <Image
           borderRadius="full"
           boxSize="40px"
@@ -89,7 +89,7 @@ export default function ThreadForm() {
         >
           <RiImageAddFill />
         </Box>
-        {isUploadLoading ? (
+        {isUploadLoading || isPending ? (
           <Button px={"20px"} colorScheme="green" borderRadius={"full"}>
             <ButtonSpinner />
           </Button>

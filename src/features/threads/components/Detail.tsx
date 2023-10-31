@@ -87,9 +87,9 @@ export default function Detail() {
                           display={"inline-block"}
                           title={thread?.data?.created_at}
                         >
-                          {moment(new Date(thread?.data?.created_at))
-                            .startOf("hour")
-                            .fromNow()}
+                          {moment(
+                            new Date(thread?.data?.created_at)
+                          ).calendar()}
                         </Text>
                       </Box>
                     </Flex>
