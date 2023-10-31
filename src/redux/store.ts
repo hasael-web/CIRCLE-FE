@@ -2,11 +2,13 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from "react-redux";
 import { configureStore } from "@reduxjs/toolkit";
 import profileReducer from "./user/profileSlice";
 import suggestedReducer from "./user/suggestedSlice";
+import detailUserSlice from "./user/detailUserSlice";
 
 const store = configureStore({
   reducer: {
     profile: profileReducer,
     suggested: suggestedReducer,
+    detailUser: detailUserSlice,
   },
 });
 

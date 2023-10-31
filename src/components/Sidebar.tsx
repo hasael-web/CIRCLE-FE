@@ -4,12 +4,13 @@ import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { BsHouse, BsHouseFill } from "react-icons/bs";
 import { FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
-import { AiOutlineHeart, AiTwotoneHeart } from "react-icons/ai";
 import { RiUserSearchFill, RiUserSearchLine } from "react-icons/ri";
+import { useAppSelector } from "@/redux/store";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { data: profile } = useAppSelector((state) => state.profile);
 
   return (
     <Fragment>
@@ -58,24 +59,10 @@ export default function Sidebar() {
                 </Text>
               </Box>
             </Link>
-            <Link to={"/follow"}>
+            <Link to={`/my-profile/${profile?.id}`}>
               <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
-                  {location.pathname === "/follow" ? (
-                    <AiTwotoneHeart />
-                  ) : (
-                    <AiOutlineHeart />
-                  )}
-                </Text>
-                <Text fontSize={"md"} mt={1}>
-                  Follows
-                </Text>
-              </Box>
-            </Link>
-            <Link to={"/profile"}>
-              <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
-                <Text fontSize={"2xl"}>
-                  {location.pathname === "/profile" ? (
+                  {location.pathname.includes("/my-profile") ? (
                     <FaCircleUser />
                   ) : (
                     <FaRegCircleUser />

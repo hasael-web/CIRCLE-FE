@@ -4,7 +4,6 @@ import { Flex, Spinner } from "@chakra-ui/react";
 import Main from "@/layout/Main";
 import HomePage from "@/pages/HomePage";
 import SearchPage from "@/pages/SearchPage";
-import FollowPage from "@/pages/FollowPage";
 import ProfilePage from "@/pages/ProfilePage";
 import RegisterPage from "@/pages/RegisterPage";
 import LoginPage from "@/pages/LoginPage";
@@ -114,19 +113,19 @@ export default function Router() {
                 }
               />
             </Route>
-            <Route path="/follow">
+            <Route path="/profile/:userId">
               <Route
                 index
                 element={
                   <IsLogged>
                     <Main>
-                      <FollowPage />
+                      <ProfilePage />
                     </Main>
                   </IsLogged>
                 }
               />
             </Route>
-            <Route path="/profile">
+            <Route path="/my-profile/:userId">
               <Route
                 index
                 element={
