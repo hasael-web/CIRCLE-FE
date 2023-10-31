@@ -50,7 +50,7 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
             </Link>
             <Box mt={"2px"} fontSize={"sm"} color={"gray.400"}>
               <Link to={`/profile/${props.data.user.id}`}>
-                {props.data.user.username}
+                @{props.data.user.username}
               </Link>{" "}
               -{" "}
               <Text display={"inline-block"} title={props.data.created_at}>

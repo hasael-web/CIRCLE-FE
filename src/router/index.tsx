@@ -8,6 +8,7 @@ import FollowPage from "@/pages/FollowPage";
 import ProfilePage from "@/pages/ProfilePage";
 import RegisterPage from "@/pages/RegisterPage";
 import LoginPage from "@/pages/LoginPage";
+import DetailPage from "@/pages/DetailPage";
 import { API } from "@/utils/api";
 
 export default function Router() {
@@ -84,6 +85,18 @@ export default function Router() {
                   <IsLogged>
                     <Main>
                       <HomePage />
+                    </Main>
+                  </IsLogged>
+                }
+              />
+            </Route>
+            <Route path="/reply/:threadId">
+              <Route
+                index
+                element={
+                  <IsLogged>
+                    <Main>
+                      <DetailPage />
                     </Main>
                   </IsLogged>
                 }

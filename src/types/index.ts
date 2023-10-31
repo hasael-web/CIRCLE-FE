@@ -69,6 +69,13 @@ export type ThreadPostType = {
   image?: string;
   uploadId?: number;
 };
+
+export type ReplyPostType = {
+  content: string;
+  image?: string;
+  uploadId?: number;
+  threadId?: string;
+};
 // THREAD
 
 // USER

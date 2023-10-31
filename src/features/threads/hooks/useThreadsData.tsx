@@ -6,7 +6,7 @@ import {
 } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { API } from "@/utils/api";
-import { ThreadPostType } from "@/types";
+import { ReplyPostType, ThreadPostType } from "@/types";
 import getError from "@/utils/getError";
 
 // fetch threads
@@ -127,4 +127,91 @@ export const usePostLike = () => {
     },
   });
 };
+
+export const usePostLikeDetail = () => {
+  const queryCLient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postLikeThread,
+    onSuccess: () => {
+      queryCLient.invalidateQueries({
+        queryKey: ["detail-thread"],
+      });
+    },
+    onError: (error) => {
+      toast.error(getError(error), {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    },
+  });
+};
 // like thread
+
+// detail thread
+const fetchDetailThread = async (threadId: string) => {
+  const response = await API.get(`/api/v1/thread/${threadId}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+    },
+  });
+  return response.data;
+};
+
+export const useDetailThread = (threadId: string) => {
+  return useQuery({
+    queryKey: ["detail-thread"],
+    queryFn: () => fetchDetailThread(threadId),
+    refetchOnWindowFocus: false,
+  });
+};
+// detail thread
+
+// post reply
+const postReply = (reply: ReplyPostType) => {
+  return API.post(
+    `/api/v1/thread/${reply.threadId}/reply`,
+    {
+      content: reply.content,
+      image: reply.image,
+    },
+    {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+      },
+    }
+  );
+};
+
+export const usePostReply = (reset: () => void) => {
+  const queryCLient = useQueryClient();
+
+  return useMutation({
+    mutationFn: postReply,
+    onSuccess: () => {
+      queryCLient.invalidateQueries({
+        queryKey: ["detail-thread"],
+      });
+      reset();
+    },
+    onError: (error) => {
+      toast.error(getError(error), {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    },
+  });
+};
+// post reply
