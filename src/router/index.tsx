@@ -9,6 +9,7 @@ import RegisterPage from "@/pages/RegisterPage";
 import LoginPage from "@/pages/LoginPage";
 import DetailPage from "@/pages/DetailPage";
 import { API } from "@/utils/api";
+import NotFound from "@/pages/NotFound";
 
 export default function Router() {
   const [checkAuthFinish, setCheckAuthFinish] = useState<boolean>(true);
@@ -157,6 +158,7 @@ export default function Router() {
                 }
               />
             </Route>
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       )}
