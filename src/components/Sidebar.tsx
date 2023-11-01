@@ -36,7 +36,7 @@ export default function Sidebar() {
               </Heading>
             </Link>
             <Link to={"/"}>
-              <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
+              <Box display={"flex"} alignItems={"center"} gap={3} mb={7}>
                 <Text fontSize={"2xl"}>
                   {location.pathname === "/" ? <BsHouseFill /> : <BsHouse />}
                 </Text>
@@ -46,7 +46,7 @@ export default function Sidebar() {
               </Box>
             </Link>
             <Link to={"/search"}>
-              <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
+              <Box display={"flex"} alignItems={"center"} gap={3} mb={7}>
                 <Text fontSize={"2xl"}>
                   {location.pathname === "/search" ? (
                     <RiUserSearchFill />
@@ -60,7 +60,7 @@ export default function Sidebar() {
               </Box>
             </Link>
             <Link to={`/my-profile/${profile?.id}`}>
-              <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
+              <Box display={"flex"} alignItems={"center"} gap={3} mb={7}>
                 <Text fontSize={"2xl"}>
                   {location.pathname.includes("/my-profile") ? (
                     <FaCircleUser />

@@ -27,9 +27,15 @@ export type ThreadLikeType = {
 export type ThreadReplyType = {
   id: string;
   content: string;
-  image: string | null;
+  image: string;
   created_at: string;
   updated_at: string;
+  user: {
+    id: string;
+    username: string;
+    fullname: string;
+    profile_picture: string;
+  };
 };
 
 export type ThreadHomeType = {

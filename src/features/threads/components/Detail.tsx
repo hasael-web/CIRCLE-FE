@@ -20,9 +20,10 @@ import { BiCommentDetail } from "react-icons/bi";
 import { BsArrowLeft } from "react-icons/bs";
 import { Link, useParams } from "react-router-dom";
 import { useDetailThread, usePostLikeDetail } from "../hooks/useThreadsData";
-import { ThreadLikeType } from "@/types";
+import { ThreadLikeType, ThreadReplyType } from "@/types";
 import { useAppSelector } from "@/redux/store";
 import ReplyForm from "./ReplyForm";
+import ReplyItem from "./ReplyItem";
 
 export default function Detail() {
   const { data: profileData } = useAppSelector((state) => state.profile);
@@ -165,6 +166,23 @@ export default function Detail() {
         <Box border={"2px solid #3a3a3a"} p={"20px"} mb={"10px"}>
           <ReplyForm threadId={params.threadId || ""} />
         </Box>
+
+        {!isLoading && !isError ? (
+          <>
+            {thread?.data?.replies.length ? (
+              <Box
+                gap={"15px"}
+                border={"2px solid #3a3a3a"}
+                px={"20px"}
+                py={"10px"}
+              >
+                {thread.data.replies.map((reply: ThreadReplyType) => (
+                  <ReplyItem reply={reply} />
+                ))}
+              </Box>
+            ) : null}
+          </>
+        ) : null}
 
         <Modal
           isOpen={isOpen}

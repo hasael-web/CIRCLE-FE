@@ -133,8 +133,8 @@ export default function Profile() {
                             right={"0px"}
                             onClick={followAndUnfollow}
                           >
-                            {detailUser?.followings
-                              .map((following) => following.id)
+                            {detailUser?.followers
+                              .map((follower) => follower.id)
                               .includes(profile?.id || "")
                               ? "Unfollow"
                               : "Follow"}
