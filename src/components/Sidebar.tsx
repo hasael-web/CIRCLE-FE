@@ -4,6 +4,7 @@ import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { BsHouse, BsHouseFill } from "react-icons/bs";
 import { FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
+import { IoMdAdd } from "react-icons/io";
 import {
   RiDeleteBin5Fill,
   RiUserSearchFill,
@@ -112,11 +113,18 @@ export default function Sidebar() {
                 width={"100%"}
                 borderRadius={"50px"}
                 mb={"15px"}
+                display={"flex"}
+                gap={3}
+                alignItems={"center"}
+                justifyContent={"left"}
                 onClick={() => {
                   document.getElementById("insertThread")?.focus();
                 }}
               >
-                Create Post
+                <Text fontSize={"2xl"}>
+                  <IoMdAdd />
+                </Text>
+                <Text fontSize={"md"}>Add New Post</Text>
               </Button>
             )}
             <Button
@@ -140,6 +148,7 @@ export default function Sidebar() {
               colorScheme="red"
               size={"md"}
               alignItems={"center"}
+              justifyContent={"left"}
               borderRadius={"full"}
             >
               <Text fontSize={"2xl"}>

@@ -48,7 +48,7 @@ export default function ReplyItem({ reply }: ReplyItemInterface) {
               </Text>
             </Box>
           </Flex>
-          <Text fontSize={"sm"} mb={"10px"} wordBreak={"break-word"}>
+          <Text fontSize={"sm"} wordBreak={"break-word"}>
             {reply?.content}
           </Text>
           {reply?.image && (
@@ -56,12 +56,12 @@ export default function ReplyItem({ reply }: ReplyItemInterface) {
               onClick={() => {
                 onOpen();
               }}
+              mt={"10px"}
               borderRadius="5px"
               boxSize="350px"
               objectFit="cover"
               src={reply?.image}
               alt={`${reply?.image} Reply Image`}
-              mb={"10px"}
               cursor={"pointer"}
             />
           )}
