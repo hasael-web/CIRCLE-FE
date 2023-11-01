@@ -4,7 +4,11 @@ import { Box, Button, Flex, Heading, Text } from "@chakra-ui/react";
 import { BiLogOut } from "react-icons/bi";
 import { BsHouse, BsHouseFill } from "react-icons/bs";
 import { FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
-import { RiUserSearchFill, RiUserSearchLine } from "react-icons/ri";
+import {
+  RiDeleteBin5Fill,
+  RiUserSearchFill,
+  RiUserSearchLine,
+} from "react-icons/ri";
 import { useAppSelector } from "@/redux/store";
 
 export default function Sidebar() {
@@ -36,7 +40,7 @@ export default function Sidebar() {
               </Heading>
             </Link>
             <Link to={"/"}>
-              <Box display={"flex"} alignItems={"center"} gap={3} mb={7}>
+              <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
                   {location.pathname === "/" ? <BsHouseFill /> : <BsHouse />}
                 </Text>
@@ -46,7 +50,7 @@ export default function Sidebar() {
               </Box>
             </Link>
             <Link to={"/search"}>
-              <Box display={"flex"} alignItems={"center"} gap={3} mb={7}>
+              <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
                   {location.pathname === "/search" ? (
                     <RiUserSearchFill />
@@ -60,7 +64,7 @@ export default function Sidebar() {
               </Box>
             </Link>
             <Link to={`/my-profile/${profile?.id}`}>
-              <Box display={"flex"} alignItems={"center"} gap={3} mb={7}>
+              <Box display={"flex"} alignItems={"center"} gap={3} mb={6}>
                 <Text fontSize={"2xl"}>
                   {location.pathname.includes("/my-profile") ? (
                     <FaCircleUser />
@@ -73,6 +77,21 @@ export default function Sidebar() {
                 </Text>
               </Box>
             </Link>
+            <Box
+              onClick={() => alert("YAHAHA KAMU TERDELETE")}
+              display={"flex"}
+              alignItems={"center"}
+              gap={3}
+              mb={6}
+              cursor={"pointer"}
+            >
+              <Text fontSize={"2xl"} color={"#FF6666"}>
+                <RiDeleteBin5Fill />
+              </Text>
+              <Text fontSize={"md"} mt={1}>
+                Remove Account
+              </Text>
+            </Box>
             {location.pathname === "/" && (
               <Button
                 colorScheme="green"

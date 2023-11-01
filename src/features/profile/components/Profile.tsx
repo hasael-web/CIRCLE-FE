@@ -184,7 +184,7 @@ export default function Profile() {
                                       key={index}
                                       justifyContent={"space-between"}
                                       alignItems={"center"}
-                                      my={"10px"}
+                                      my={4}
                                     >
                                       <Flex gap={2} alignItems={"center"}>
                                         <Text>
@@ -243,7 +243,7 @@ export default function Profile() {
                                       key={index}
                                       justifyContent={"space-between"}
                                       alignItems={"center"}
-                                      my={"10px"}
+                                      my={4}
                                     >
                                       <Flex gap={2} alignItems={"center"}>
                                         <Text>

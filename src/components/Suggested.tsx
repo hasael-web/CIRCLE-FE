@@ -56,7 +56,7 @@ export default function Suggested() {
                           key={index}
                           justifyContent={"space-between"}
                           alignItems={"center"}
-                          mb={3}
+                          my={4}
                         >
                           <Flex gap={2} alignItems={"center"}>
                             <Text>

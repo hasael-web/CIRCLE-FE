@@ -105,4 +105,16 @@ export type UserProfileType = {
   followers: FollowType[],
   followings: FollowType[],
 };
+
+export type SearchUserType = {
+  id: string;
+  username: string;
+  fullname: string;
+  email: string;
+  password: null;
+  profile_picture: string;
+  bio: string | null;
+  created_at: string;
+  updated_at: string;
+};
 // USER
