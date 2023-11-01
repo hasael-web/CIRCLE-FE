@@ -10,11 +10,39 @@ import {
   RiUserSearchLine,
 } from "react-icons/ri";
 import { useAppSelector } from "@/redux/store";
+import Swal from "sweetalert2";
+import { toast } from "react-toastify";
+import getError from "@/utils/getError";
+import { API } from "@/utils/api";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const { data: profile } = useAppSelector((state) => state.profile);
+
+  const deleteAccount = async () => {
+    try {
+      await API.delete("/api/v1/user", {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+        },
+      });
+
+      localStorage.clear();
+      navigate("/login");
+    } catch (error) {
+      toast.error(getError(error), {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
+  };
 
   return (
     <Fragment>
@@ -77,27 +105,13 @@ export default function Sidebar() {
                 </Text>
               </Box>
             </Link>
-            <Box
-              onClick={() => alert("YAHAHA KAMU TERDELETE")}
-              display={"flex"}
-              alignItems={"center"}
-              gap={3}
-              mb={6}
-              cursor={"pointer"}
-            >
-              <Text fontSize={"2xl"} color={"#FF6666"}>
-                <RiDeleteBin5Fill />
-              </Text>
-              <Text fontSize={"md"} mt={1}>
-                Remove Account
-              </Text>
-            </Box>
             {location.pathname === "/" && (
               <Button
                 colorScheme="green"
                 size="md"
                 width={"100%"}
                 borderRadius={"50px"}
+                mb={"15px"}
                 onClick={() => {
                   document.getElementById("insertThread")?.focus();
                 }}
@@ -105,6 +119,34 @@ export default function Sidebar() {
                 Create Post
               </Button>
             )}
+            <Button
+              onClick={() => {
+                Swal.fire({
+                  title: "Are you sure?",
+                  text: "Your Account Will Be Removed Permanently!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, Remove My Account!",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    deleteAccount();
+                  }
+                });
+              }}
+              display={"flex"}
+              gap={3}
+              colorScheme="red"
+              size={"md"}
+              alignItems={"center"}
+              borderRadius={"full"}
+            >
+              <Text fontSize={"2xl"}>
+                <RiDeleteBin5Fill />
+              </Text>
+              <Text fontSize={"md"}>Remove Account</Text>
+            </Button>
           </Box>
 
           <Flex alignItems={"center"} gap={3} mb={6}>
@@ -116,8 +158,20 @@ export default function Sidebar() {
               mt={1}
               cursor={"pointer"}
               onClick={() => {
-                localStorage.clear();
-                navigate("/login");
+                Swal.fire({
+                  title: "Are you sure?",
+                  text: "You Will Be Logged Out!",
+                  icon: "warning",
+                  showCancelButton: true,
+                  confirmButtonColor: "#3085d6",
+                  cancelButtonColor: "#d33",
+                  confirmButtonText: "Yes, Logout!",
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    localStorage.clear();
+                    navigate("/login");
+                  }
+                });
               }}
             >
               Logout

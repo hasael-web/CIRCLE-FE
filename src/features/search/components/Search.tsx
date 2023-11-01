@@ -44,7 +44,7 @@ export default function Search() {
 
     const timeout = setTimeout(() => {
       setGoRefetch(!goRefetch);
-    }, 200)
+    }, 100)
 
     return () => {
       clearTimeout(timeout)

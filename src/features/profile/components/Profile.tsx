@@ -1,5 +1,6 @@
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { getDetailUser } from "@/redux/user/detailUserSlice";
+import { getProfile } from "@/redux/user/profileSlice";
 import { API } from "@/utils/api";
 import getError from "@/utils/getError";
 import {
@@ -49,6 +50,7 @@ export default function Profile() {
       });
 
       dispatch(getDetailUser(params.userId || ""));
+      dispatch(getProfile());
     } catch (error) {
       toast.error(getError(error), {
         position: "top-center",
@@ -153,15 +155,15 @@ export default function Profile() {
                     </Text>
                     <Flex mt={"10px"} gap={3} mb={5}>
                       <Box fontSize={"md"}>
-                        {detailUser?.followings.length}{" "}
-                        <Text display={"inline"} color={"gray.400"}>
-                          Following
-                        </Text>
-                      </Box>
-                      <Box fontSize={"md"}>
                         {detailUser?.followers.length}{" "}
                         <Text display={"inline"} color={"gray.400"}>
                           Followers
+                        </Text>
+                      </Box>
+                      <Box fontSize={"md"}>
+                        {detailUser?.followings.length}{" "}
+                        <Text display={"inline"} color={"gray.400"}>
+                          Following
                         </Text>
                       </Box>
                     </Flex>
