@@ -4,12 +4,16 @@ import {
   AlertDescription,
   AlertIcon,
   Box,
+  Button,
   Flex,
   Image,
   Modal,
   ModalBody,
   ModalCloseButton,
   ModalContent,
+  ModalFooter,
+  ModalHeader,
+  ModalOverlay,
   Spinner,
   Text,
   useDisclosure,
@@ -28,6 +32,11 @@ import ReplyItem from "./ReplyItem";
 export default function Detail() {
   const { data: profileData } = useAppSelector((state) => state.profile);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenLike,
+    onOpen: onOpenLike,
+    onClose: onCloseLike,
+  } = useDisclosure();
   const params = useParams();
 
   const {
@@ -139,7 +148,12 @@ export default function Detail() {
                             />
                           )}
                         </Box>
-                        <Text fontSize={"sm"} color={"gray.400"}>
+                        <Text
+                          fontSize={"sm"}
+                          color={"gray.400"}
+                          onClick={onOpenLike}
+                          cursor={"pointer"}
+                        >
                           {thread?.data?.likes.length}
                         </Text>
                       </Flex>
@@ -183,6 +197,52 @@ export default function Detail() {
             ) : null}
           </>
         ) : null}
+
+        <Modal
+          isCentered
+          onClose={onCloseLike}
+          isOpen={isOpenLike}
+          motionPreset="slideInBottom"
+          size={"sm"}
+        >
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader pb={0}>List User Who Like</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+              {thread?.data?.likes.length ? (
+                <>
+                  {thread?.data?.likes.map((like: ThreadLikeType) => (
+                    <Flex gap={2} alignItems={"center"} my={"15px"}>
+                      <Text>
+                        <Image
+                          borderRadius="full"
+                          boxSize="45px"
+                          objectFit="cover"
+                          src={like.user.profile_picture}
+                          alt={like.user.fullname}
+                        />
+                      </Text>
+                      <Box>
+                        <Text fontSize={"sm"}>{like.user.fullname}</Text>
+                        <Text fontSize={"sm"} color={"gray.400"}>
+                          @{like.user.username}
+                        </Text>
+                      </Box>
+                    </Flex>
+                  ))}
+                </>
+              ) : (
+                <Text>No Like Found Yet</Text>
+              )}
+            </ModalBody>
+            <ModalFooter pt={0}>
+              <Button colorScheme="blue" size={"sm"} onClick={onCloseLike}>
+                Close
+              </Button>
+            </ModalFooter>
+          </ModalContent>
+        </Modal>
 
         <Modal
           isOpen={isOpen}

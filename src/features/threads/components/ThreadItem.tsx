@@ -9,6 +9,10 @@ import {
   ModalContent,
   useDisclosure,
   ModalCloseButton,
+  ModalHeader,
+  ModalOverlay,
+  ModalFooter,
+  Button,
 } from "@chakra-ui/react";
 import moment from "moment";
 import { Link } from "react-router-dom";
@@ -25,6 +29,11 @@ interface ThreadItemPropsInterface {
 export default function ThreadItem(props: ThreadItemPropsInterface) {
   const { data: profileData } = useAppSelector((state) => state.profile);
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const {
+    isOpen: isOpenLike,
+    onOpen: onOpenLike,
+    onClose: onCloseLike,
+  } = useDisclosure();
   const [threadSelected, setThreadSelected] = useState<ThreadHomeType | null>(
     null
   );
@@ -99,7 +108,15 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
                   />
                 )}
               </Box>
-              <Text fontSize={"sm"} color={"gray.400"}>
+              <Text
+                onClick={() => {
+                  setThreadSelected(props.data);
+                  onOpenLike();
+                }}
+                cursor={"pointer"}
+                fontSize={"sm"}
+                color={"gray.400"}
+              >
                 {props.data.likes.length}
               </Text>
             </Flex>
@@ -122,6 +139,52 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
       </Flex>
 
       <Modal
+        isCentered
+        onClose={onCloseLike}
+        isOpen={isOpenLike}
+        motionPreset="slideInBottom"
+        size={"sm"}
+      >
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader pb={0}>List User Who Like</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+            {threadSelected?.likes.length ? (
+              <>
+                {threadSelected?.likes.map((like) => (
+                  <Flex gap={2} alignItems={"center"} my={"15px"}>
+                    <Text>
+                      <Image
+                        borderRadius="full"
+                        boxSize="45px"
+                        objectFit="cover"
+                        src={like.user.profile_picture}
+                        alt={like.user.fullname}
+                      />
+                    </Text>
+                    <Box>
+                      <Text fontSize={"sm"}>{like.user.fullname}</Text>
+                      <Text fontSize={"sm"} color={"gray.400"}>
+                        @{like.user.username}
+                      </Text>
+                    </Box>
+                  </Flex>
+                ))}
+              </>
+            ) : (
+              <Text>No Like Found Yet</Text>
+            )}
+          </ModalBody>
+          <ModalFooter pt={0}>
+            <Button colorScheme="blue" size={"sm"} onClick={onCloseLike}>
+              Close
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+
+      <Modal
         isOpen={isOpen}
         onClose={onClose}
         motionPreset="slideInBottom"
@@ -137,7 +200,6 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
             shadow={"dark-lg"}
           >
             <Image
-              onClick={onOpen}
               width={"100%"}
               objectFit="cover"
               src={threadSelected?.image}
