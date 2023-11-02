@@ -14,6 +14,7 @@ export default function Widget() {
         style={{ borderLeft: "3px solid #3a3a3a" }}
         overflow={"auto"}
         className="hide-scroll"
+        display={{ base: "none", "2xl": "block" }}
       >
         <Profile />
         <Suggested />

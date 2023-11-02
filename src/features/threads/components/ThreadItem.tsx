@@ -51,7 +51,7 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
           alt={`${props.data.user.fullname} Profile Picture`}
         />
         <Box>
-          <Flex mb={"5px"}>
+          <Box display={{ base: "block", md: "flex" }} mb={"5px"}>
             <Link to={`/profile/${props.data.user.id}`}>
               <Text fontWeight={"bold"} me={"10px"}>
                 {props.data.user.fullname}
@@ -66,7 +66,7 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
                 {moment(new Date(props.data.created_at)).calendar()}
               </Text>
             </Box>
-          </Flex>
+          </Box>
           <Text fontSize={"sm"} mb={"10px"} wordBreak={"break-word"}>
             {props.data.content}
           </Text>

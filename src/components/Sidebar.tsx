@@ -48,7 +48,8 @@ export default function Sidebar() {
   return (
     <Fragment>
       <Box
-        w={"20%"}
+        w={{ xl: "25%", "2xl": "20%" }}
+        display={{ base: "none", lg: "block" }}
         px={50}
         py={10}
         borderRight={"3px solid #3a3a3a"}
@@ -110,7 +111,7 @@ export default function Sidebar() {
               <Button
                 colorScheme="green"
                 size="md"
-                width={"100%"}
+                width={"220px"}
                 borderRadius={"50px"}
                 mb={"15px"}
                 display={"flex"}
@@ -147,6 +148,7 @@ export default function Sidebar() {
               gap={3}
               colorScheme="red"
               size={"md"}
+              width={"220px"}
               alignItems={"center"}
               justifyContent={"left"}
               borderRadius={"full"}
