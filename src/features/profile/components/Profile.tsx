@@ -86,7 +86,7 @@ export default function Profile() {
                   <>
                     <Box position={"relative"}>
                       <Image
-                        src="https://cdn.pnghd.pics/data/607/green-gradient-background-hd-28.jpg"
+                        src="https://assets-global.website-files.com/5a9ee6416e90d20001b20038/635ab99b5920d1d2c6e04397_horizontal%20(66).svg"
                         alt="Green Gradient"
                         borderRadius={"10px"}
                         width={"100%"}
