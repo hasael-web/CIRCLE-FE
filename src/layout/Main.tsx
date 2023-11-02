@@ -70,7 +70,7 @@ export default function Main({ children }: { children: ReactNode }) {
               </Link>
             </DrawerHeader>
             <DrawerBody mt={4} w={"100%"} p={0}>
-              <SidebarDrawer />
+              <SidebarDrawer closeDrawer={onClose} />
             </DrawerBody>
           </DrawerContent>
         </Drawer>

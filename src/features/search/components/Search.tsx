@@ -26,8 +26,12 @@ export default function Search() {
   const navigate = useNavigate();
   const [queryParams] = useSearchParams();
 
-  const [pageNumber, setPageNumber] = useState<number>(parseInt(queryParams.get("page") || "0", 10));
-  const [searchQuery, setSearchQuery] = useState<string>(queryParams.get("search") || "");
+  const [pageNumber, setPageNumber] = useState<number>(
+    parseInt(queryParams.get("page") || "0", 10)
+  );
+  const [searchQuery, setSearchQuery] = useState<string>(
+    queryParams.get("search") || ""
+  );
   const [goRefetch, setGoRefetch] = useState<boolean>(false);
 
   const {
@@ -44,11 +48,11 @@ export default function Search() {
 
     const timeout = setTimeout(() => {
       setGoRefetch(!goRefetch);
-    }, 100)
+    }, 100);
 
     return () => {
-      clearTimeout(timeout)
-    }
+      clearTimeout(timeout);
+    };
   }, [queryParams]);
 
   useEffect(() => {
@@ -116,12 +120,17 @@ export default function Search() {
                         {users.data.map(
                           (user: SearchUserType, index: number) => (
                             <Flex
+                              display={{ base: "block", sm: "flex" }}
                               key={index}
                               justifyContent={"space-between"}
                               alignItems={"center"}
                               my={5}
                             >
-                              <Flex gap={2} alignItems={"center"}>
+                              <Flex
+                                gap={2}
+                                alignItems={"center"}
+                                mb={{ base: 3, sm: 0 }}
+                              >
                                 <Text>
                                   <Image
                                     borderRadius="full"

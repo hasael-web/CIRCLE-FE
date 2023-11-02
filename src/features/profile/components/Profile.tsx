@@ -187,8 +187,13 @@ export default function Profile() {
                                       justifyContent={"space-between"}
                                       alignItems={"center"}
                                       my={4}
+                                      display={{ base: "block", sm: "flex" }}
                                     >
-                                      <Flex gap={2} alignItems={"center"}>
+                                      <Flex
+                                        gap={2}
+                                        alignItems={"center"}
+                                        mb={{ base: 3, sm: 0 }}
+                                      >
                                         <Text>
                                           <Image
                                             borderRadius="full"
@@ -246,8 +251,13 @@ export default function Profile() {
                                       justifyContent={"space-between"}
                                       alignItems={"center"}
                                       my={4}
+                                      display={{ base: "block", sm: "flex" }}
                                     >
-                                      <Flex gap={2} alignItems={"center"}>
+                                      <Flex
+                                        gap={2}
+                                        alignItems={"center"}
+                                        mb={{ base: 3, sm: 0 }}
+                                      >
                                         <Text>
                                           <Image
                                             borderRadius="full"

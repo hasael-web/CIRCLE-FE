@@ -16,7 +16,11 @@ import { useAppSelector } from "@/redux/store";
 import getError from "@/utils/getError";
 import { API } from "@/utils/api";
 
-export default function SidebarDrawer() {
+interface SidebarDrawerInterface {
+  closeDrawer: () => void;
+}
+
+export default function SidebarDrawer(props: SidebarDrawerInterface) {
   const navigate = useNavigate();
   const location = useLocation();
   const { data: profile } = useAppSelector((state) => state.profile);
@@ -119,6 +123,7 @@ export default function SidebarDrawer() {
             )}
             <Button
               onClick={() => {
+                props.closeDrawer();
                 Swal.fire({
                   title: "Are you sure?",
                   text: "Your Account Will Be Removed Permanently!",
@@ -158,6 +163,7 @@ export default function SidebarDrawer() {
               mt={1}
               cursor={"pointer"}
               onClick={() => {
+                props.closeDrawer();
                 Swal.fire({
                   title: "Are you sure?",
                   text: "You Will Be Logged Out!",

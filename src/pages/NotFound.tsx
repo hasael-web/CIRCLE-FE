@@ -13,7 +13,7 @@ export default function NotFound() {
         flexDirection={"column"}
         color={"white"}
       >
-        <Heading as="h2" size="3xl" mb={"35px"}>
+        <Heading as="h2" size="3xl" mb={"35px"} textAlign={"center"}>
           404 Page Not Found
         </Heading>
         <Link to="/">
