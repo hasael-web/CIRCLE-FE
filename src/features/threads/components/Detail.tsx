@@ -213,7 +213,12 @@ export default function Detail() {
               {thread?.data?.likes.length ? (
                 <>
                   {thread?.data?.likes.map((like: ThreadLikeType) => (
-                    <Flex gap={2} alignItems={"center"} my={"15px"}>
+                    <Flex
+                      gap={2}
+                      alignItems={"center"}
+                      my={"15px"}
+                      key={like.id}
+                    >
                       <Text>
                         <Image
                           borderRadius="full"

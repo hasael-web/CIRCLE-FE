@@ -152,8 +152,8 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
           <ModalBody>
             {threadSelected?.likes.length ? (
               <>
-                {threadSelected?.likes.map((like) => (
-                  <Flex gap={2} alignItems={"center"} my={"15px"}>
+                {threadSelected?.likes.map((like, index) => (
+                  <Flex gap={2} alignItems={"center"} my={"15px"} key={index}>
                     <Text>
                       <Image
                         borderRadius="full"
