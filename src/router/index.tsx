@@ -8,6 +8,7 @@ import ProfilePage from "@/pages/ProfilePage";
 import RegisterPage from "@/pages/RegisterPage";
 import LoginPage from "@/pages/LoginPage";
 import DetailPage from "@/pages/DetailPage";
+import EditProfilePage from "@/pages/EditProfilePage";
 import { API } from "@/utils/api";
 import NotFound from "@/pages/NotFound";
 
@@ -133,6 +134,18 @@ export default function Router() {
                   <IsLogged>
                     <Main>
                       <ProfilePage />
+                    </Main>
+                  </IsLogged>
+                }
+              />
+            </Route>
+            <Route path="/edit-profile">
+              <Route
+                index
+                element={
+                  <IsLogged>
+                    <Main>
+                      <EditProfilePage />
                     </Main>
                   </IsLogged>
                 }

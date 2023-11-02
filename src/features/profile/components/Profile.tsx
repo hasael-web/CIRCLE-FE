@@ -22,6 +22,7 @@ import {
   Text,
 } from "@chakra-ui/react";
 import { Fragment, useEffect } from "react";
+import { FiEdit3 } from "react-icons/fi";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 
@@ -106,7 +107,7 @@ export default function Profile() {
                         left={"20px"}
                       />
                       {profile?.id === detailUser?.id && (
-                        <Link to={`/profile/${detailUser?.id}/edit`}>
+                        <Link to={`/edit-profile`}>
                           <Button
                             color={"white"}
                             _hover={{ bg: "#38a169", borderColor: "#38a169" }}
@@ -117,7 +118,9 @@ export default function Profile() {
                             bottom={"-50px"}
                             right={"0px"}
                           >
-                            Edit Profile
+                            <Text fontSize={"lg"}>
+                              <FiEdit3 />
+                            </Text>
                           </Button>
                         </Link>
                       )}

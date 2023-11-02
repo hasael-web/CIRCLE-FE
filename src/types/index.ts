@@ -102,8 +102,8 @@ export type UserProfileType = {
   bio: string | null;
   created_at: string;
   updated_at: string;
-  followers: FollowType[],
-  followings: FollowType[],
+  followers: FollowType[];
+  followings: FollowType[];
 };
 
 export type SearchUserType = {
@@ -116,5 +116,13 @@ export type SearchUserType = {
   bio: string | null;
   created_at: string;
   updated_at: string;
+};
+
+export type EditProfileType = {
+  fullName: string;
+  userName: string;
+  bio: string;
+  profilePicture?: string;
+  uploadId?: string;
 };
 // USER

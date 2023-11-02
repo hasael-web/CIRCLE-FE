@@ -79,6 +79,7 @@ export default function ThreadForm() {
               setContent(event.target.value)
             }
             id="insertThread"
+            borderRadius={"full"}
           />
         </FormControl>
         <Box

@@ -3,7 +3,6 @@ import { Box, Button, Flex, Text } from "@chakra-ui/react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
-import { IoMdAdd } from "react-icons/io";
 import { BiLogOut } from "react-icons/bi";
 import { BsHouse, BsHouseFill } from "react-icons/bs";
 import { FaCircleUser, FaRegCircleUser } from "react-icons/fa6";
@@ -100,27 +99,6 @@ export default function SidebarDrawer(props: SidebarDrawerInterface) {
                 </Text>
               </Box>
             </Link>
-            {location.pathname === "/" && (
-              <Button
-                colorScheme="green"
-                size="md"
-                width={"220px"}
-                borderRadius={"50px"}
-                mb={"15px"}
-                display={"flex"}
-                gap={3}
-                alignItems={"center"}
-                justifyContent={"left"}
-                onClick={() => {
-                  document.getElementById("insertThread")?.focus();
-                }}
-              >
-                <Text fontSize={"2xl"}>
-                  <IoMdAdd />
-                </Text>
-                <Text fontSize={"md"}>Add New Post</Text>
-              </Button>
-            )}
             <Button
               onClick={() => {
                 props.closeDrawer();

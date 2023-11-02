@@ -15,6 +15,7 @@ import {
 import { Link } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/redux/store";
 import { getProfile } from "@/redux/user/profileSlice";
+import { FiEdit3 } from "react-icons/fi";
 
 export default function Profile() {
   const dispatch = useAppDispatch();
@@ -68,7 +69,7 @@ export default function Profile() {
                       top={"40px"}
                       left={"20px"}
                     />
-                    <Link to={`/profile/${profileData?.id}/edit`}>
+                    <Link to={`/edit-profile`}>
                       <Button
                         color={"white"}
                         _hover={{ bg: "#38a169", borderColor: "#38a169" }}
@@ -79,7 +80,9 @@ export default function Profile() {
                         bottom={"-50px"}
                         right={"0px"}
                       >
-                        Edit Profile
+                        <Text fontSize={"lg"}>
+                          <FiEdit3 />
+                        </Text>
                       </Button>
                     </Link>
                   </Box>
