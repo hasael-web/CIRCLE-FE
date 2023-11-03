@@ -121,7 +121,7 @@ export default function EditProfile() {
               />
             </FormControl>
             <Flex justifyContent={"end"}>
-              {isLoading ? (
+              {isLoading || isUploadLoading ? (
                 <Button
                   isLoading
                   colorScheme="green"
