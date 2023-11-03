@@ -1,27 +1,53 @@
-# React + TypeScript + Vite
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Circle is a social media website where users can create posts, like posts, and comment on these posts. Circle is also accompanied by follow and delete account features.
 
-Currently, two official plugins are available:
+### Technology Used
+- [ReactJS](https://react.dev/)
+- [Redux Toolkit](https://redux-toolkit.js.org/)
+- [Tanstack Query 5](https://tanstack.com/query/v5/)
+- [Chakra UI](https://chakra-ui.com/)
+- [Axios](https://github.com/axios/axios)
+- [Moment](https://momentjs.com/)
+ 
+<!-- GETTING STARTED -->
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Installation
+- Clone This Repository
 
-## Expanding the ESLint configuration
+`https://github.com/andry-pebrianto/circle-client.git`
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- Install Module
 
-- Configure the top-level `parserOptions` property like this:
+`yarn`
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+- Setting .env
+
+```bash
+API_URL=YOUR_API_URL
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+### Executing program
+
+- Run this project with `yarn run dev`.
+
+<!-- RELATED PROJECT -->
+## Related Project
+
+- [Circle API](https://github.com/andry-pebrianto/circle-api)
+- [Circle Demo](https://circle-community.netlify.app/)
+
+<!-- CONTACT INFO -->
+## Contact Info
+
+Contributors names and contact info:
+
+1. Andry Pebrianto
+
+- [Linkedin](https://www.linkedin.com/in/andry-pebrianto)
+
+## License 
+
+This project is licensed under the MIT License - see the LICENSE file for details
