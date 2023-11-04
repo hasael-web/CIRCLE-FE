@@ -154,6 +154,41 @@ export const usePostLikeDetail = () => {
 };
 // like thread
 
+// like thread
+const deleteThread = (threadId: string) => {
+  return API.delete(`/api/v1/thread/${threadId}`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+    },
+  });
+};
+
+export const useDeleteThread = () => {
+  const queryCLient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteThread,
+    onSuccess: () => {
+      queryCLient.invalidateQueries({
+        queryKey: ["threads-infinite"],
+      });
+    },
+    onError: (error) => {
+      toast.error(getError(error), {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    },
+  });
+};
+// like thread
+
 // detail thread
 const fetchDetailThread = async (threadId: string) => {
   const response = await API.get(`/api/v1/thread/${threadId}`, {

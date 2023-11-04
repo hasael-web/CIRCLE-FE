@@ -19,8 +19,10 @@ import { Link } from "react-router-dom";
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
 import { BiCommentDetail } from "react-icons/bi";
 import { ThreadHomeType } from "@/types";
-import { usePostLike } from "../hooks/useThreadsData";
+import { useDeleteThread, usePostLike } from "../hooks/useThreadsData";
 import { useAppSelector } from "@/redux/store";
+import { RiDeleteBin5Line } from "react-icons/ri";
+import Swal from "sweetalert2";
 
 interface ThreadItemPropsInterface {
   data: ThreadHomeType;
@@ -39,6 +41,7 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
   );
 
   const { mutate } = usePostLike();
+  const { mutate: mutateDelete } = useDeleteThread();
 
   return (
     <Fragment>
@@ -134,6 +137,35 @@ export default function ThreadItem(props: ThreadItemPropsInterface) {
                 </Text>
               </Flex>
             </Link>
+            {props.data.user.id === profileData?.id && (
+              <Flex
+                alignItems={"center"}
+                onClick={() => {
+                  Swal.fire({
+                    title: "Are you sure?",
+                    text: "This Thread Will Be Deleted Permanently!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Delete This Thread!",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      mutateDelete(props.data.id);
+                    }
+                  });
+                }}
+                cursor={"pointer"}
+              >
+                <RiDeleteBin5Line
+                  style={{
+                    fontSize: "20px",
+                    marginRight: "5px",
+                    marginTop: "1px",
+                  }}
+                />
+              </Flex>
+            )}
           </Flex>
         </Box>
       </Flex>
