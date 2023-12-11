@@ -42,6 +42,8 @@ export default function Profile() {
     dispatch(getDetailUser(params.userId || ""));
   }, [params]);
 
+  console.log(params.userId);
+
   const followAndUnfollow = async () => {
     try {
       await API.post("/api/v1/follow/" + params.userId, "", {
@@ -65,6 +67,8 @@ export default function Profile() {
       });
     }
   };
+
+  console.log(detailUser);
 
   return (
     <Fragment>
@@ -116,8 +120,7 @@ export default function Profile() {
                             variant="outline"
                             position={"absolute"}
                             bottom={"-50px"}
-                            right={"0px"}
-                          >
+                            right={"0px"}>
                             <Text fontSize={"lg"}>
                               <FiEdit3 />
                             </Text>
@@ -136,8 +139,7 @@ export default function Profile() {
                             position={"absolute"}
                             bottom={"-50px"}
                             right={"0px"}
-                            onClick={followAndUnfollow}
-                          >
+                            onClick={followAndUnfollow}>
                             {detailUser?.followers
                               .map((follower) => follower.id)
                               .includes(profile?.id || "")
@@ -190,13 +192,11 @@ export default function Profile() {
                                       justifyContent={"space-between"}
                                       alignItems={"center"}
                                       my={4}
-                                      display={{ base: "block", sm: "flex" }}
-                                    >
+                                      display={{ base: "block", sm: "flex" }}>
                                       <Flex
                                         gap={2}
                                         alignItems={"center"}
-                                        mb={{ base: 3, sm: 0 }}
-                                      >
+                                        mb={{ base: 3, sm: 0 }}>
                                         <Text>
                                           <Image
                                             borderRadius="full"
@@ -212,8 +212,7 @@ export default function Profile() {
                                           </Text>
                                           <Text
                                             fontSize={"sm"}
-                                            color={"gray.400"}
-                                          >
+                                            color={"gray.400"}>
                                             @{follower.username}
                                           </Text>
                                         </Box>
@@ -228,8 +227,7 @@ export default function Profile() {
                                             }}
                                             size="sm"
                                             borderRadius={"full"}
-                                            variant="outline"
-                                          >
+                                            variant="outline">
                                             Visit Profile
                                           </Button>
                                         </Link>
@@ -254,13 +252,11 @@ export default function Profile() {
                                       justifyContent={"space-between"}
                                       alignItems={"center"}
                                       my={4}
-                                      display={{ base: "block", sm: "flex" }}
-                                    >
+                                      display={{ base: "block", sm: "flex" }}>
                                       <Flex
                                         gap={2}
                                         alignItems={"center"}
-                                        mb={{ base: 3, sm: 0 }}
-                                      >
+                                        mb={{ base: 3, sm: 0 }}>
                                         <Text>
                                           <Image
                                             borderRadius="full"
@@ -276,8 +272,7 @@ export default function Profile() {
                                           </Text>
                                           <Text
                                             fontSize={"sm"}
-                                            color={"gray.400"}
-                                          >
+                                            color={"gray.400"}>
                                             @{following.username}
                                           </Text>
                                         </Box>
@@ -292,8 +287,7 @@ export default function Profile() {
                                             }}
                                             size="sm"
                                             borderRadius={"full"}
-                                            variant="outline"
-                                          >
+                                            variant="outline">
                                             Visit Profile
                                           </Button>
                                         </Link>

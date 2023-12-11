@@ -39,7 +39,9 @@ const profileSlice = createSlice({
   name: "profile",
   initialState,
   reducers: {}, // tidak diisi karena memakai extraReducers
-  extraReducers: (builder) => {
+  extraReducers: async (builder) => {
+    // console.log(getProfile.pending);
+
     builder.addCase(getProfile.pending, (state) => {
       state.isLoading = true;
     });

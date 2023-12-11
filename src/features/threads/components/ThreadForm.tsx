@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   Button,
   ButtonSpinner,
@@ -63,12 +64,11 @@ export default function ThreadForm() {
   return (
     <Fragment>
       <Flex alignItems={"center"} gap={"10px"} mb={3}>
-        <Image
+        <Avatar
           borderRadius="full"
           boxSize="40px"
           objectFit="cover"
-          src={profileData?.profile_picture}
-          alt={profileData?.fullname}
+          src={profileData?.profile_picture || "none"}
         />
         <FormControl>
           <Input
@@ -86,8 +86,7 @@ export default function ThreadForm() {
           fontSize={"3xl"}
           color={"#38a169"}
           cursor={"pointer"}
-          onClick={onOpen}
-        >
+          onClick={onOpen}>
           <RiImageAddFill />
         </Box>
         {isUploadLoading || isPending ? (
@@ -99,8 +98,7 @@ export default function ThreadForm() {
             px={"20px"}
             colorScheme="green"
             borderRadius={"full"}
-            onClick={postThread}
-          >
+            onClick={postThread}>
             Post
           </Button>
         )}
@@ -111,8 +109,7 @@ export default function ThreadForm() {
         onClose={onClose}
         isOpen={isOpen}
         motionPreset="slideInBottom"
-        size={"xl"}
-      >
+        size={"xl"}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Upload Image</ModalHeader>

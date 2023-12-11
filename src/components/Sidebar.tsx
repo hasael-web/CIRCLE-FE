@@ -12,38 +12,38 @@ import {
 } from "react-icons/ri";
 import { useAppSelector } from "@/redux/store";
 import Swal from "sweetalert2";
-import { toast } from "react-toastify";
-import getError from "@/utils/getError";
-import { API } from "@/utils/api";
+// import { toast } from "react-toastify";
+// import getError from "@/utils/getError";
+// import { API } from "@/utils/api";
 
 export default function Sidebar() {
   const navigate = useNavigate();
   const location = useLocation();
   const { data: profile } = useAppSelector((state) => state.profile);
 
-  const deleteAccount = async () => {
-    try {
-      await API.delete("/api/v1/user", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
-        },
-      });
+  // const deleteAccount = async () => {
+  //   try {
+  //     await API.delete("/api/v1/user", {
+  //       headers: {
+  //         Authorization: `Bearer ${localStorage.getItem("jwtToken")}`,
+  //       },
+  //     });
 
-      localStorage.clear();
-      navigate("/login");
-    } catch (error) {
-      toast.error(getError(error), {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
-    }
-  };
+  //     localStorage.clear();
+  //     navigate("/login");
+  //   } catch (error) {
+  //     toast.error(getError(error), {
+  //       position: "top-center",
+  //       autoClose: 5000,
+  //       hideProgressBar: false,
+  //       closeOnClick: true,
+  //       pauseOnHover: true,
+  //       draggable: true,
+  //       progress: undefined,
+  //       theme: "colored",
+  //     });
+  //   }
+  // };
 
   return (
     <Fragment>
@@ -54,8 +54,7 @@ export default function Sidebar() {
         py={10}
         borderRight={"3px solid #3a3a3a"}
         overflow={"auto"}
-        className="hide-scroll"
-      >
+        className="hide-scroll">
         <Flex flexDir={"column"} justifyContent={"space-between"} h={"100%"}>
           <Box>
             <Link to={"/"}>
@@ -64,8 +63,7 @@ export default function Sidebar() {
                 size="3xl"
                 noOfLines={1}
                 color={"green.400"}
-                mb={8}
-              >
+                mb={8}>
                 circle
               </Heading>
             </Link>
@@ -120,15 +118,14 @@ export default function Sidebar() {
                 justifyContent={"left"}
                 onClick={() => {
                   document.getElementById("insertThread")?.focus();
-                }}
-              >
+                }}>
                 <Text fontSize={"2xl"}>
                   <IoMdAdd />
                 </Text>
                 <Text fontSize={"md"}>Add New Post</Text>
               </Button>
             )}
-            <Button
+            {/* <Button
               onClick={() => {
                 Swal.fire({
                   title: "Are you sure?",
@@ -157,7 +154,7 @@ export default function Sidebar() {
                 <RiDeleteBin5Fill />
               </Text>
               <Text fontSize={"md"}>Remove Account</Text>
-            </Button>
+            </Button> */}
           </Box>
 
           <Flex alignItems={"center"} gap={3} mb={6}>
@@ -183,8 +180,7 @@ export default function Sidebar() {
                     navigate("/login");
                   }
                 });
-              }}
-            >
+              }}>
               Logout
             </Text>
           </Flex>

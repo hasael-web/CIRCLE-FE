@@ -56,8 +56,7 @@ export default function Suggested() {
                           key={index}
                           justifyContent={"space-between"}
                           alignItems={"center"}
-                          my={4}
-                        >
+                          my={4}>
                           <Flex gap={2} alignItems={"center"}>
                             <Text>
                               <Image
@@ -85,8 +84,7 @@ export default function Suggested() {
                                 }}
                                 size="sm"
                                 borderRadius={"full"}
-                                variant="outline"
-                              >
+                                variant="outline">
                                 Visit Profile
                               </Button>
                             </Link>

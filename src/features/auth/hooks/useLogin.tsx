@@ -26,6 +26,7 @@ export function useLogin() {
       setIsLoading(true);
 
       const response = await API.post("/api/v1/login", form);
+      console.log(response);
       toast.success(response.data.message, {
         position: "top-center",
         autoClose: 5000,

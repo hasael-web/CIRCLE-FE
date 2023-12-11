@@ -13,7 +13,7 @@ export default function Watermark() {
       <Card bg={"#3a3a3a"} color={"white"}>
         <CardBody py={4} px={5}>
           <Box fontSize={"md"}>
-            Developed by Andry Pebrianto - {""}
+            Developed by Anonimous - {""}
             <FaGithub style={{ display: "inline", marginRight: "5px" }} />
             <FaLinkedin style={{ display: "inline", marginRight: "5px" }} />
             <FaSquareFacebook
