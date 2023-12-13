@@ -11,7 +11,6 @@ Circle is a social media website where users can create posts, like posts, delet
 - [Tanstack Query 5](https://tanstack.com/query/v5/)
 - [Chakra UI](https://chakra-ui.com/)
 - [Axios](https://github.com/axios/axios)
-- [Moment](https://momentjs.com/)
 
 <!-- GETTING STARTED -->
 
